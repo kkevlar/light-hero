@@ -6,10 +6,35 @@ public class LightHeroDemo extends JFrame implements Runnable
 {
 	private int[] myvals = new int[7];
 
+
 	public static void main (String[] args)
 	{
 		LightHeroDemo myframe = new LightHeroDemo();
 		new Thread(myframe).start();
+		boolean odd = false;
+
+		while(true)
+		{
+
+			myframe.repaint();
+			try
+			{
+			Thread.sleep(50);
+			}
+			catch (Exception ex)
+			{
+
+			}
+
+			if(odd)
+				myframe.setSize(800,801);
+			else
+				myframe.setSize(800,800);
+
+			odd = !odd;
+
+		}
+
 	}
 
 	public void parseLineForVals(String myin)
@@ -28,6 +53,8 @@ public class LightHeroDemo extends JFrame implements Runnable
 		}	
 	}
 
+	boolean odd = false;
+
 	public void run()
 	{
 		myvals[0] = 20;
@@ -35,11 +62,13 @@ public class LightHeroDemo extends JFrame implements Runnable
 		myvals[2] = 225;
 
 		Scanner scanner = new Scanner(System.in);
-		while(scanner.hasNextLine())
+		while(true)
 		{
-			String myin = scanner.nextLine();
-			parseLineForVals(myin);	
-			this.repaint();
+			if(scanner.hasNextLine())
+			{
+				String myin = scanner.nextLine();
+				parseLineForVals(myin);
+			}
 		}
 	}
 
@@ -60,7 +89,7 @@ public class LightHeroDemo extends JFrame implements Runnable
 	{
 		public void paintComponent(Graphics g)
 		{
-
+			super.paintComponent(g);
 			try
 			{
 			g.setColor(new Color(myvals[0],myvals[1],myvals[2]));
