@@ -1,6 +1,10 @@
 
 #include "demo.h"
 
+
+
+
+
 struct timeval t1, t2;
 
 void light_hero_init()
@@ -24,6 +28,36 @@ uint64_t light_hero_micros()
     return elapsed_time;
 }
 
+void io_r_left_intensity(uint8_t intensity)
+{
+
+}
+void io_g_left_intensity(uint8_t intensity)
+{
+
+}
+void io_b_left_intensity(uint8_t intensity)
+{
+
+}
+void io_r_right_intensity(uint8_t intensity)
+{
+
+}
+void io_g_right_intensity(uint8_t intensity)
+{
+
+}
+void io_b_right_intensity(uint8_t intensity)
+{
+
+}
+void io_w_right_lowhi(bool lowhi)
+{
+    
+}
+
+
 int main()
 {
     // for(int z = 0; z< 10; z++)
@@ -41,7 +75,7 @@ int main()
     while(1)
     {   
         uint64_t i = light_hero_micros();
-        printf("%d,0,0,0,0,%d,%d\n",(i/10000) % 255,(i/20000)%255,(i/10000)%255);
+        printf("%d,%d,0,0,0,0,%d,%d\n",(i/10000) % 255,(i/20000)%255,(i/10000)%255);
         fflush(stdout);
         light_hero_sleep_micros(100000);
     }

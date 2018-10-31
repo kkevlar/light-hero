@@ -2,11 +2,14 @@
 
 all: demo inoup
 
-demo: LightHeroDemo demo.o demo.h lighthero.h
-	gcc demo.o -o demo
+demo: LightHeroDemo demo.o lighthero.o demo.h lighthero.h platform.h
+	gcc demo.o lighthero.o -o demo
 
-demo.o: demo.c demo.h lighthero.h
+demo.o: demo.c demo.h lighthero.h platform.h
 	gcc -c demo.c -o demo.o
+
+lighthero.o: lighthero.c lighthero.h platform.h
+	gcc -c lighthero.c -o lighthero.o
 
 LightHeroDemo: LightHeroDemo.java
 	javac LightHeroDemo.java

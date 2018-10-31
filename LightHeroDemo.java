@@ -80,6 +80,7 @@ public class LightHeroDemo extends JFrame implements Runnable
 		this.setTitle("Light Hero Demo");
 		this.setContentPane(new MyPaintCanvas());
 		this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		this.setResizable(false);
 
 
 		this.setVisible(true);
