@@ -1,4 +1,8 @@
 # light-hero
-we'll see about this name 
 
-light-motif :)))
+Fun work is in justin.c
+
+`make rundemo`
+
+
+
