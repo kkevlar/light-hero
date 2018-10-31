@@ -95,9 +95,20 @@ public class LightHeroDemo extends JFrame implements Runnable
 			g.setColor(new Color(myvals[0],myvals[1],myvals[2]));
 			g.fillRect(0,0,getWidth()/2,getHeight());
 			g.setColor(new Color(myvals[3],myvals[4],myvals[5]));
-			g.fillRect(getWidth()/2,0,getWidth()/2, (int) (getHeight()*.7));
-			g.setColor(new Color(myvals[6],myvals[6],myvals[6]));
-			g.fillRect(getWidth()/2,(int) (getHeight()*.7),getWidth()/2,(int) (getHeight()*.3));
+			g.fillRect(getWidth()/2,0,getWidth()/2, getHeight());
+
+			Color c = new Color(255,255,255,myvals[6]);
+
+			g.setColor(c);
+
+			int count = 9;
+
+			int mywide = getWidth() / (count * 2);
+			for(int i = 1; i < count; i+=2)
+			{
+				g.fillRect( getWidth()/2 + i * mywide,0,mywide,getHeight());
+			
+			}
 
 			}
 			catch(Exception ex)
