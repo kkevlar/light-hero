@@ -28,4 +28,25 @@ void io_set_control(uint8_t signal, uint8_t intensity)
 	}
 }
 
+void all_off()
+{
+	for(int i = 0; i < CTRL_COUNT; i++)
+	{
+		io_set_control(i,0);
+	}
+}
+
+void all_on()
+{
+	for(int i = 0; i < CTRL_COUNT; i++)
+	{
+		io_set_control(i,255);
+	}
+}
+
+void lighthero_main()
+{
+	do_justin_things();
+}
+
 

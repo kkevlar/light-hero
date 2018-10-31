@@ -2,22 +2,19 @@
 #include "demo.h"
 
 
-
-
-
 struct timeval t1, t2;
 
-void light_hero_init()
+void lighthero_init()
 {
     gettimeofday(&t1, NULL);
 }
 
-void light_hero_sleep_micros(uint32_t micros)
+void lighthero_sleep_micros(uint32_t micros)
 {
     usleep(micros);
 }
 
-uint64_t light_hero_micros()
+uint64_t lighthero_micros()
 {
     double elapsed_time = 0;
 
@@ -28,56 +25,59 @@ uint64_t light_hero_micros()
     return elapsed_time;
 }
 
+uint8_t intensities[CTRL_COUNT]; 
+
+void reprint()
+{
+    printf("%d,%d,%d,%d,%d,%d,%d\n",
+        intensities[0],
+        intensities[1],
+        intensities[2],
+        intensities[3],
+        intensities[4],
+        intensities[5],
+        intensities[6]
+        );
+}
+
 void io_r_left_intensity(uint8_t intensity)
 {
-
+    intensities[0] = intensity;
+    reprint();
 }
 void io_g_left_intensity(uint8_t intensity)
 {
-
+    intensities[1] = intensity;
+    reprint();
 }
 void io_b_left_intensity(uint8_t intensity)
 {
-
+    intensities[2] = intensity;
+    reprint();
 }
 void io_r_right_intensity(uint8_t intensity)
 {
-
+    intensities[3] = intensity;
+    reprint();
 }
 void io_g_right_intensity(uint8_t intensity)
 {
-
+    intensities[4] = intensity;
+    reprint();
 }
 void io_b_right_intensity(uint8_t intensity)
 {
-
+    intensities[5] = intensity;
+    reprint();
 }
 void io_w_right_lowhi(bool lowhi)
 {
-    
+    intensities[6] = lowhi * 255;
+    reprint();
 }
-
 
 int main()
 {
-    // for(int z = 0; z< 10; z++)
-    // {
-    //     for(int i = 0; i < 255; i++)
-    //     {
-    //         printf("%d,0,0,0,0,%d,%d\n",255-i,255-i,i);
-    //         fflush(stdout);
-    //         printf("%d,0,0,0,0,%d,%d\n",255-i,255-i,i);
-    //         fflush(stdout);
-    //         light_hero_sleep_micros(1000);
-    //     }
-    // }
-
-    while(1)
-    {   
-        uint64_t i = light_hero_micros();
-        printf("%d,%d,0,0,0,0,%d,%d\n",(i/10000) % 255,(i/20000)%255,(i/10000)%255);
-        fflush(stdout);
-        light_hero_sleep_micros(100000);
-    }
+    lighthero_main();
 }
 

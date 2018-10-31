@@ -2,16 +2,16 @@
 
 int pins[] = {2,3,5,6,9,10,11};
 
-void light_hero_init()
+void lighthero_init()
 {
     
 }
 
-void light_hero_sleep_micros(uint32_t micros)
+void lighthero_sleep_micros(uint32_t micros)
 {
 }
 
-uint64_t light_hero_micros()
+uint64_t lighthero_micros()
 {
 	return 0;
 }
