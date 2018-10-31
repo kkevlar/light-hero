@@ -7,7 +7,7 @@ void setup()
 {
 	for(int i = 0; i < sizeof(pins); i++)
 	{
-		pinMode(i,OUTPUT);
+		pinMode(pins[i],OUTPUT);
 	}
 }
 
@@ -15,19 +15,31 @@ void all_off()
 {
 	for(int i = 0; i < sizeof(pins); i++)
 	{
-		digitalWrite(i,LOW);
+		digitalWrite(pins[i],LOW);
 	}
 }
 
 void loop()
 {
 	all_off();
-	delay(1000);
+
+	for(int i = 0; i < 20; i++)
+	{
+		digitalWrite(pins[0], HIGH);
+		digitalWrite(pins[6], HIGH);
+		delay(100);
+		all_off();
+		delay(150);
+	}
+
+	all_off();
+
+	delay(5000);
 
 	for(int i = 0; i < sizeof(pins); i++)
 	{
 		all_off();
-		digitalWrite(i,HIGH);
+		digitalWrite(pins[i],HIGH);
 		delay(400);
 	}
 	all_off();
@@ -36,7 +48,7 @@ void loop()
 
 	for(int i = 0; i < sizeof(pins); i++)
 	{
-		digitalWrite(i,HIGH);
+		digitalWrite(pins[i],HIGH);
 		delay(400);
 	}
 	
@@ -46,14 +58,14 @@ void loop()
 
 	for(int i = 0; i < sizeof(pins); i++)
 	{
-		digitalWrite(i,HIGH);
+		digitalWrite(pins[i],HIGH);
 	}
 
 	delay(1000);
 
 	all_off();
 
-	delay(1000);
-	
+	delay(3000);
+
 }
 
