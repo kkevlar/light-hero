@@ -1,4 +1,4 @@
-
+#include "platform.h"
 
 int pins[] = {2,3,5,6,9,10,11};
 
@@ -40,7 +40,7 @@ void io_b_right_intensity(uint8_t intensity)
 {
 
 }
-void io_w_right_lowhi(bool lowhi)
+void io_w_right_lowhi(uint8_t lowhi)
 {
     
 }
@@ -54,23 +54,6 @@ void setup()
 		pinMode(pins[i],OUTPUT);
 	}
 }
-
-void all_off()
-{
-	for(int i = 0; i < 7; i++)
-	{
-		digitalWrite(pins[i],LOW);
-	}
-}
-
-void all_on()
-{
-	for(int i = 0; i < 7; i++)
-	{
-		digitalWrite(pins[i],HIGH);
-	}
-}
-
 
 void loop()
 {

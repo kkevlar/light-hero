@@ -70,7 +70,7 @@ void io_b_right_intensity(uint8_t intensity)
     intensities[5] = intensity;
     reprint();
 }
-void io_w_right_lowhi(bool lowhi)
+void io_w_right_lowhi(uint8_t lowhi)
 {
     intensities[6] = lowhi * 255;
     reprint();
