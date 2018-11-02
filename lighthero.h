@@ -21,7 +21,7 @@ struct _led_state_
 	uint64_t setmicros;
 	float decay; 
 };
-typedef struct _led_state_ led_state_t
+typedef struct _led_state_ led_state_t;
 
 void io_set_control(uint8_t signal, uint8_t intensity);
 void all_off();
