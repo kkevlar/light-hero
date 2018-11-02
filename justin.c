@@ -63,3 +63,7 @@ void sleep_ms(int ms)
 	lighthero_sleep_micros(1000 * ms)
 }
 
+float sec_per_beat(float bpm)
+{
+	return 1.0/(bpm * (1.0/60.0))
+}
