@@ -1,5 +1,7 @@
 #include "lighthero.h"
 
+led_state_t states[CTRL_COUNT];
+
 void io_set_control(uint8_t signal, uint8_t intensity)
 {
 	switch(signal)
@@ -47,6 +49,16 @@ void all_on()
 void lighthero_main()
 {
 	do_justin_things();
+}
+
+void lighthero_do_decay(int ledindex)
+{
+	uint64_t mymicros = lighthero_micros();
+	float val = states[ledindex].intensity;
+	float dt = (mymicros - states[ledindex].setmicros);
+	val *= exp(-1 * states[ledindex].decay * dt);
+	states[ledindex].intensity = val;
+	states[ledindex].setmicros = mymicros;
 }
 
 

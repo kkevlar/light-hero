@@ -14,11 +14,14 @@
 #include "platform.h"
 #include "justin.h"
 
-struct _light_hero_states_
+struct _led_state_
 {
-	uint16_t intensity[CTRL_COUNT]; 
+	uint8_t signal;
+	uint16_t intensity; 
+	uint64_t setmicros;
+	float decay; 
 };
-typedef struct _light_hero_states_ light_hero_states_t;
+typedef struct _led_state_ led_state_t
 
 void io_set_control(uint8_t signal, uint8_t intensity);
 void all_off();
