@@ -14,8 +14,8 @@ void do_justin_things()
 
 		for(int i = 0; i < 20; i++)
 		{
-			io_set_control(0, 255);
-			io_set_control(6, 255);
+			io_set_control(CTRL_R_LEFT, INTENSITY_MAX);
+			io_set_control(CTRL_W_RIGHT, INTENSITY_MAX);
 			lighthero_sleep_micros(1000* 100);
 			all_off();
 			lighthero_sleep_micros(1000* 150);
@@ -28,7 +28,7 @@ void do_justin_things()
 		for(int i = 0; i < 7; i++)
 		{
 			all_off();
-			io_set_control(i,255);
+			io_set_control(i,INTENSITY_MAX);
 			lighthero_sleep_micros(1000* 400);
 		}
 		all_off();
@@ -37,7 +37,7 @@ void do_justin_things()
 
 		for(int i = 0; i < 7; i++)
 		{
-			io_set_control(i,255);
+			io_set_control(i,INTENSITY_MAX);
 			lighthero_sleep_micros(1000* 400);
 		}
 		
@@ -47,7 +47,7 @@ void do_justin_things()
 
 		for(int i = 0; i < 7; i++)
 		{
-			io_set_control(i,255);
+			io_set_control(i,INTENSITY_MAX);
 		}
 
 		lighthero_sleep_micros(1000* 1000);

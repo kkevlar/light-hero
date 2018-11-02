@@ -3,6 +3,9 @@
 
 #define CTRL_COUNT 7
 
+#define INTENSITY_MAX 255
+#define INTENSITY_OFF 0
+
 #define CTRL_R_LEFT 0
 #define CTRL_G_LEFT 1
 #define CTRL_B_LEFT 2
