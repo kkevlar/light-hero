@@ -19,7 +19,7 @@ public class LightHeroDemo extends JFrame implements Runnable
 			myframe.repaint();
 			try
 			{
-			Thread.sleep(100);
+			Thread.sleep(20);
 			}
 			catch (Exception ex)
 			{

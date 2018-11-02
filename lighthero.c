@@ -51,6 +51,14 @@ void lighthero_main()
 	do_justin_things();
 }
 
+void lighthero_set_pulse(int ledindex)
+{
+	uint64_t mymicros = lighthero_micros();
+	states[ledindex].intensity = 255;
+	states[ledindex].setmicros = mymicros;
+	states[ledindex].decay = 1000000;
+}
+
 void lighthero_do_decay(int ledindex)
 {
 	uint64_t mymicros = lighthero_micros();
@@ -59,6 +67,14 @@ void lighthero_do_decay(int ledindex)
 	val *= exp(-1 * states[ledindex].decay * dt);
 	states[ledindex].intensity = val;
 	states[ledindex].setmicros = mymicros;
+}
+
+void lighthero_flush()
+{
+	for(int i = 0; i < CTRL_COUNT; i++)
+	{
+		io_set_control(i, states[i].intensity);
+	}
 }
 
 
