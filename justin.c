@@ -3,6 +3,11 @@
 
 void do_justin_things()
 {
+	cool_lightshow();
+}
+
+void cool_lightshow()
+{
 	lighthero_init();
 	while (1)
 	{
@@ -56,6 +61,11 @@ void do_justin_things()
 
 		sleep_ms(3000);
 	}
+}
+
+void sleep_beat(float bpm)
+{
+	sleep_ms((int) sec_per_beat(bpm) * 1000.0);
 }
 
 void sleep_ms(int ms)
