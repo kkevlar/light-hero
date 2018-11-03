@@ -25,7 +25,7 @@ void io_set_control(uint8_t signal, uint8_t intensity)
 			io_b_right_intensity(intensity);
 			break;
 		case CTRL_W_RIGHT:
-			io_w_right_lowhi(intensity / (255/2));
+			io_w_right_lowhi(intensity/254);
 			break;
 	}
 }
@@ -51,22 +51,25 @@ void lighthero_main()
 	do_justin_things();
 }
 
-void lighthero_set_pulse(int ledindex)
+void lighthero_set_pulse(int ledindex, float half_life_seconds)
 {
 	uint64_t mymicros = lighthero_micros();
 	states[ledindex].intensity = 255;
 	states[ledindex].setmicros = mymicros;
-	states[ledindex].decay = 1000000;
+	states[ledindex].decay = 0.69314718056;
+	states[ledindex].decay /= half_life_seconds * 10e6;
 }
 
 void lighthero_do_decay(int ledindex)
 {
-	uint64_t mymicros = lighthero_micros();
+	float mymicros = lighthero_micros();
 	float val = states[ledindex].intensity;
-	float dt = (mymicros - states[ledindex].setmicros);
+	float dt = states[ledindex].setmicros;
+	dt = mymicros - dt;
 	val *= exp(-1 * states[ledindex].decay * dt);
 	states[ledindex].intensity = val;
-	states[ledindex].setmicros = mymicros;
+	// states[ledindex].setmicros = mymicros;
+
 }
 
 void lighthero_flush()
