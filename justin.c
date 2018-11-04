@@ -3,7 +3,36 @@
 
 void do_justin_things()
 {
-	cool_lightshow();
+	float bpm;
+	bpm = 60.0;
+
+	lighthero_init();
+
+	while(1)
+	{
+		all_off();
+		sleep_beats(1, bpm);
+		all_on();
+		sleep_beats(1, bpm);
+		all_off();
+	}
+
+	/*cool_lightshow2();*/
+
+	/*cool_lightshow();*/
+}
+
+void cool_lightshow2()
+{
+	lighthero_init();
+	while (1)
+	{
+		all_off();
+		sleep_ms(500);
+		all_on();
+		sleep_ms(2000);
+		all_off();
+	}
 }
 
 void cool_lightshow()
@@ -60,6 +89,14 @@ void cool_lightshow()
 		all_off();
 
 		sleep_ms(3000);
+	}
+}
+
+void sleep_beats(int beats, float bpm)
+{
+	for (int i = 0; i < beats; i ++)
+	{
+		sleep_beat(bpm);
 	}
 }
 
