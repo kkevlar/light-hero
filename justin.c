@@ -96,13 +96,8 @@ void sleep_beats(int beats, float bpm)
 {
 	for (int i = 0; i < beats; i ++)
 	{
-		sleep_beat(bpm);
+		sleep_ms((int) sec_per_beat(bpm) * 1000.0);
 	}
-}
-
-void sleep_beat(float bpm)
-{
-	sleep_ms((int) sec_per_beat(bpm) * 1000.0);
 }
 
 void sleep_ms(int ms)
