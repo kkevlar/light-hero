@@ -34,7 +34,9 @@ void all_off()
 {
 	for(int i = 0; i < CTRL_COUNT; i++)
 	{
-		io_set_control(i,0);
+		lighthero_set_value(i, 0);
+		lighthero_do_decay(i);
+
 	}
 }
 
@@ -42,7 +44,8 @@ void all_on()
 {
 	for(int i = 0; i < CTRL_COUNT; i++)
 	{
-		io_set_control(i,255);
+		lighthero_set_value(i, 255);
+		lighthero_do_decay(i);
 	}
 }
 
@@ -60,24 +63,32 @@ void lighthero_set_pulse(int ledindex, float half_life_seconds)
 	states[ledindex].decay /= half_life_seconds * 10e6;
 }
 
+void lighthero_set_value(int ledindex, int intensity)
+{
+	uint64_t mymicros = lighthero_micros();
+	states[ledindex].intensity = intensity;
+	states[ledindex].setmicros = mymicros;
+	states[ledindex].decay = 0;
+}
+
 void lighthero_do_decay(int ledindex)
 {
 	float mymicros = lighthero_micros();
 	float val = states[ledindex].intensity;
 	float dt = states[ledindex].setmicros;
 	dt = mymicros - dt;
-	val *= exp(-1 * states[ledindex].decay * dt);
-	states[ledindex].intensity = val;
+	val = val * exp(-1 * states[ledindex].decay * dt);
+	// states[ledindex].intensity = val;
 	// states[ledindex].setmicros = mymicros;
-
+	io_set_control(ledindex, val);
 }
 
-void lighthero_flush()
-{
-	for(int i = 0; i < CTRL_COUNT; i++)
-	{
-		io_set_control(i, states[i].intensity);
-	}
-}
+// void lighthero_flush()
+// {
+// 	for(int i = 0; i < CTRL_COUNT; i++)
+// 	{
+// 		io_set_control(i, states[i].intensity);
+// 	}
+// }
 
 

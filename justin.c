@@ -16,15 +16,15 @@ void right_on(float half_life_seconds)
 	lighthero_set_pulse(CTRL_W_RIGHT, half_life_seconds);
 }
 
-void refresh_for_awhile()
+void refresh_for_awhile(uint64_t length)
 {
 	uint64_t mymicros = lighthero_micros();
-	mymicros += .5*1000*1000;
+	mymicros += length;
 	while(mymicros > lighthero_micros())
 	{
 		for(int i = 0; i < CTRL_COUNT; i++)
 			lighthero_do_decay(i);
-		lighthero_flush();
+		// lighthero_flush();
 		lighthero_sleep_micros(2000);
 	}
 }
@@ -32,18 +32,25 @@ void refresh_for_awhile()
 void do_justin_things()
 {
 	lighthero_init();
+
+	float bps = 100/60;
+
+	float spb = 1/bps;
+
+	uint64_t micros_per_beat = spb*1000*1000*.5;
+	float normal_pulse = 0.010;
+
 	while (1)
 	{
-		all_off();
 		
-		left_on(1);
-
-		 refresh_for_awhile();
-
-		all_off();
-		right_on(1);
-
-		 refresh_for_awhile();
+		left_on(normal_pulse);
+		refresh_for_awhile(micros_per_beat);
+		lighthero_set_pulse(CTRL_B_LEFT, normal_pulse);
+		refresh_for_awhile(micros_per_beat);
+		right_on(normal_pulse);
+		refresh_for_awhile(micros_per_beat);
+		lighthero_set_pulse(CTRL_R_RIGHT, normal_pulse);
+		refresh_for_awhile(micros_per_beat);
 	}
 }
 

@@ -32,7 +32,8 @@ void all_on();
 void lighthero_main();
 void lighthero_do_decay(int ledindex);
 void lighthero_set_pulse(int ledindex, float half_life_seconds);
-void lighthero_flush();
+void lighthero_set_value(int ledindex, int intensity);
+// void lighthero_flush();
 
 
 
