@@ -33,12 +33,12 @@ void do_justin_things()
 {
 	lighthero_init();
 
-	float bps = 100/60;
+	float bps = 60/60;
 
 	float spb = 1/bps;
 
 	uint64_t micros_per_beat = spb*1000*1000*.5;
-	float normal_pulse = 0.010;
+	float normal_pulse = 0.020;
 
 	while (1)
 	{
