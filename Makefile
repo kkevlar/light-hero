@@ -3,7 +3,7 @@
 all: demo inoup
 
 rundemo: demo
-	stdbuf -i0 -o0 -e0 ./demo | java LightHeroDemo 
+	./demo | java LightHeroDemo 
 
 
 demo: LightHeroDemo demo.o lighthero.o justin.o demo.h lighthero.h platform.h

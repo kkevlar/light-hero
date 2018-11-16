@@ -25,7 +25,7 @@ void io_set_control(uint8_t signal, uint8_t intensity)
 			io_b_right_intensity(intensity);
 			break;
 		case CTRL_W_RIGHT:
-			io_w_right_lowhi(intensity/254);
+			io_w_right_lowhi(intensity);
 			break;
 	}
 }
@@ -81,6 +81,7 @@ void lighthero_do_decay(int ledindex)
 	// states[ledindex].intensity = val;
 	// states[ledindex].setmicros = mymicros;
 	io_set_control(ledindex, val);
+
 }
 
 // void lighthero_flush()

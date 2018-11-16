@@ -1,6 +1,7 @@
 import javax.swing.*;
 import java.awt.*;
 import java.util.*;
+import java.io.*;
 
 public class LightHeroDemo extends JFrame implements Runnable
 {
@@ -19,7 +20,7 @@ public class LightHeroDemo extends JFrame implements Runnable
 			myframe.repaint();
 			try
 			{
-			Thread.sleep(100);
+			Thread.sleep(10);
 			}
 			catch (Exception ex)
 			{
@@ -36,39 +37,43 @@ public class LightHeroDemo extends JFrame implements Runnable
 		}
 
 	}
+		int max = 0;
 
-	public void parseLineForVals(String myin)
-	{
-		try
-		{
-		String[] splits = myin.split(",");
-		for(int i = 0; i < 7; i++)
-		{
-			myvals[i] = Integer.parseInt(splits[i]);
-		}
-		}
-		catch(Exception ex)
-		{
-
-		}	
-	}
-
-	boolean odd = false;
 
 	public void run()
 	{
-		myvals[0] = 20;
-		myvals[1] = 20;
-		myvals[2] = 225;
 
-		Scanner scanner = new Scanner(System.in);
+		int addr = 0;
+		int value = 0;
+
+		myvals[0] = 0;
+		myvals[1] = 0;
+		myvals[2] = 0;
+		myvals[3] = 0;
+		myvals[4] = 0;
+		myvals[5] = 0;
+		myvals[6] = 0;
+
+
+		BufferedReader reader = new BufferedReader(new InputStreamReader(System.in));
 		while(true)
 		{
-			if(scanner.hasNextLine())
+			try
 			{
-				String myin = scanner.nextLine();
-				parseLineForVals(myin);
+			addr = reader.read();
+			value = reader.read();
+
 			}
+			catch(IOException ex)
+			{
+
+			}
+			if(addr < 0 || addr > 6 || value < 0 || value > 255)
+				continue;
+
+			myvals[addr] = value;
+			max = value>max?value:max;
+			// System.out.printf("addr %d = %d\n",addr,value);
 		}
 	}
 
@@ -93,12 +98,12 @@ public class LightHeroDemo extends JFrame implements Runnable
 			super.paintComponent(g);
 			try
 			{
-			g.setColor(new Color(myvals[0],myvals[1],myvals[2]));
+			g.setColor(new Color((float) (myvals[0]+0.0)/max,(float) (myvals[1]+0.0)/max,(float) (myvals[2]+0.0)/max));
 			g.fillRect(0,0,getWidth()/2,getHeight());
-			g.setColor(new Color(myvals[3],myvals[4],myvals[5]));
+			g.setColor(new Color((float) (myvals[3]+0.0)/max,(float) (myvals[4]+0.0)/max,(float) (myvals[5]+0.0)/max));
 			g.fillRect(getWidth()/2,0,getWidth()/2, getHeight());
 
-			Color c = new Color(255,255,255,myvals[6]);
+			Color c = new Color(1.0f,1.0f,1.0f,(float) (myvals[6]+0.0)/max);
 
 			g.setColor(c);
 
