@@ -14,7 +14,7 @@ void do_justin_things()
 		sleep_beats(1, bpm);
 		all_on();
 		sleep_beats(1, bpm);
-		all_off();
+		/*all_off();*/
 	}
 
 	/*cool_lightshow2();*/
