@@ -1,111 +1,64 @@
 
 #include "justin.h"
 
+void left_on(float half_life_seconds)
+{
+	lighthero_set_pulse(CTRL_R_LEFT, half_life_seconds);
+	lighthero_set_pulse(CTRL_G_LEFT, half_life_seconds);
+	lighthero_set_pulse(CTRL_B_LEFT, half_life_seconds);
+}
+
+void right_on(float half_life_seconds)
+{
+	lighthero_set_pulse(CTRL_R_RIGHT, half_life_seconds);
+	lighthero_set_pulse(CTRL_G_RIGHT, half_life_seconds);
+	lighthero_set_pulse(CTRL_B_RIGHT, half_life_seconds);
+	// lighthero_set_pulse(CTRL_W_RIGHT, half_life_seconds);
+}
+
+void refresh_for_awhile(uint64_t length)
+{
+	uint64_t mymicros = lighthero_micros();
+	mymicros += length;
+	while(mymicros > lighthero_micros())
+	{
+		for(int i = 0; i < CTRL_COUNT; i++)
+			lighthero_do_decay(i);
+		// lighthero_flush();
+		lighthero_sleep_micros(50);
+	}
+}
+
 void do_justin_things()
 {
-	float bpm;
-	bpm = 60.0;
-
 	lighthero_init();
 
-	while(1)
-	{
-		all_off();
-		sleep_beats(1, bpm);
-		all_on();
-		sleep_beats(1, bpm);
-		/*all_off();*/
-	}
+	float bps = 60.0/60.0;
 
-	/*cool_lightshow2();*/
+	float spb = 1/bps;
 
-	/*cool_lightshow();*/
-}
+	uint64_t micros_per_beat = spb*1000*1000*.5;
+	float normal_pulse = 0.0050;
 
-void cool_lightshow2()
-{
-	lighthero_init();
+	lighthero_set_value(0,0);
+	lighthero_set_value(1,0);
+	lighthero_set_value(2,0);
+	lighthero_set_value(3,0);
+	lighthero_set_value(4,0);
+	lighthero_set_value(5,0);
+	lighthero_set_value(6,0);
+
 	while (1)
 	{
-		all_off();
-		sleep_ms(500);
-		all_on();
-		sleep_ms(2000);
-		all_off();
-	}
-}
-
-void cool_lightshow()
-{
-	lighthero_init();
-	while (1)
-	{
-		all_off();
-		sleep_ms(500);
-		all_on();
-		sleep_ms(2000);
-		all_off();
-
-		for(int i = 0; i < 20; i++)
-		{
-			io_set_control(CTRL_R_LEFT, INTENSITY_MAX);
-			io_set_control(CTRL_W_RIGHT, INTENSITY_MAX);
-			sleep_ms(100);
-			all_off();
-			sleep_ms(150);
-		}
-
-		all_off();
-
-		sleep_ms(1000);
-
-		for(int i = 0; i < 7; i++)
-		{
-			all_off();
-			io_set_control(i,INTENSITY_MAX);
-			sleep_ms(400);
-		}
-		all_off();
-
-		sleep_ms(1000);
-
-		for(int i = 0; i < 7; i++)
-		{
-			io_set_control(i,INTENSITY_MAX);
-			sleep_ms(400);
-		}
 		
-		all_off();
-
-		sleep_ms(2000);
-
-		for(int i = 0; i < 7; i++)
-		{
-			io_set_control(i,INTENSITY_MAX);
-		}
-
-		sleep_ms(1000);
-
-		all_off();
-
-		sleep_ms(3000);
+		left_on(normal_pulse);
+		refresh_for_awhile(micros_per_beat);
+		lighthero_set_pulse(CTRL_B_LEFT, normal_pulse);
+		refresh_for_awhile(micros_per_beat);
+		right_on(normal_pulse);
+		refresh_for_awhile(micros_per_beat);
+		lighthero_set_pulse(CTRL_R_RIGHT, normal_pulse);
+		refresh_for_awhile(micros_per_beat);
 	}
 }
 
-void sleep_beats(int beats, float bpm)
-{
-	for (int i = 0; i < beats; i ++)
-	{
-		sleep_ms((int) sec_per_beat(bpm) * 1000.0);
-	}
-}
-
-void sleep_ms(int ms)
-{
-	lighthero_sleep_micros(1000 * ms);
-}
-
-float sec_per_beat(float bpm)
-{
-	return 1.0/(bpm * (1.0/60.0));
-}

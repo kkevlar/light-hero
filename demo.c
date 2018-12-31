@@ -25,55 +25,45 @@ uint64_t lighthero_micros()
     return elapsed_time;
 }
 
-uint8_t intensities[CTRL_COUNT]; 
-
-void reprint()
+void write_intensity(uint8_t addr, uint8_t intensity)
 {
-    printf("%d,%d,%d,%d,%d,%d,%d\n",
-        intensities[0],
-        intensities[1],
-        intensities[2],
-        intensities[3],
-        intensities[4],
-        intensities[5],
-        intensities[6]
-        );
+    fwrite(&addr,1,1,stdout);
+    fwrite(&intensity,1,1,stdout);
+    fflush(stdout);
 }
 
 void io_r_left_intensity(uint8_t intensity)
 {
-    intensities[0] = intensity;
-    reprint();
+   write_intensity(0,intensity);
 }
+
 void io_g_left_intensity(uint8_t intensity)
 {
-    intensities[1] = intensity;
-    reprint();
+   write_intensity(1,intensity);
 }
 void io_b_left_intensity(uint8_t intensity)
 {
-    intensities[2] = intensity;
-    reprint();
+   write_intensity(2,intensity);
+    
 }
 void io_r_right_intensity(uint8_t intensity)
 {
-    intensities[3] = intensity;
-    reprint();
+   write_intensity(3,intensity);
+
 }
 void io_g_right_intensity(uint8_t intensity)
 {
-    intensities[4] = intensity;
-    reprint();
+   write_intensity(4,intensity);
+   
 }
 void io_b_right_intensity(uint8_t intensity)
 {
-    intensities[5] = intensity;
-    reprint();
+   write_intensity(5,intensity);
+    
 }
-void io_w_right_lowhi(uint8_t lowhi)
+void io_w_right_lowhi(uint8_t intensity)
 {
-    intensities[6] = lowhi * 255;
-    reprint();
+   write_intensity(6,intensity);    
 }
 
 int main()
