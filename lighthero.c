@@ -84,6 +84,23 @@ void lighthero_do_decay(int ledindex)
 
 }
 
+void lighthero_swap_sides()
+{
+	led_state_t temp;
+
+	temp = states[0];
+	states[0] = states[3];
+	states[3] = temp;
+
+	temp = states[1];
+	states[1] = states[4];
+	states[4] = temp;
+
+	temp = states[2];
+	states[2] = states[5];
+	states[5] = temp;
+}
+
 // void lighthero_flush()
 // {
 // 	for(int i = 0; i < CTRL_COUNT; i++)

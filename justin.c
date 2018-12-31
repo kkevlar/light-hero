@@ -18,13 +18,22 @@ void right_on(float half_life_seconds)
 
 void refresh_for_awhile(uint64_t length)
 {
+	uint8_t refreshed = 0;
 	uint64_t mymicros = lighthero_micros();
+	uint64_t startmicros = lighthero_micros();
+
 	mymicros += length;
 	while(mymicros > lighthero_micros())
 	{
 		for(int i = 0; i < CTRL_COUNT; i++)
 			lighthero_do_decay(i);
 		// lighthero_flush();
+		if(!refreshed && lighthero_micros() - startmicros > length / 2)
+		{
+			refreshed = 1;
+			// lighthero_swap_sides();
+		}
+
 		lighthero_sleep_micros(50);
 	}
 }

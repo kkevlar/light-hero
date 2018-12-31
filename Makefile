@@ -6,7 +6,7 @@ rundemo: demo
 	./demo | java LightHeroDemo 
 
 
-demo: demo.o lighthero.o justin.o demo.h lighthero.h platform.h
+demo: LightHeroDemo demo.o lighthero.o justin.o demo.h lighthero.h platform.h
 	gcc demo.o lighthero.o justin.o -lm -o demo 
 
 demo.o: demo.c demo.h lighthero.h platform.h
