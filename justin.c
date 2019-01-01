@@ -3,16 +3,16 @@
 
 void left_on(float half_life_seconds)
 {
-	lighthero_set_pulse(CTRL_R_LEFT, half_life_seconds);
-	lighthero_set_pulse(CTRL_G_LEFT, half_life_seconds);
-	lighthero_set_pulse(CTRL_B_LEFT, half_life_seconds);
+	lighthero_set_pulse(CTRL_R_LEFT, 255, half_life_seconds);
+	lighthero_set_pulse(CTRL_G_LEFT, 255, half_life_seconds);
+	lighthero_set_pulse(CTRL_B_LEFT, 255, half_life_seconds);
 }
 
 void right_on(float half_life_seconds)
 {
-	lighthero_set_pulse(CTRL_R_RIGHT, half_life_seconds);
-	lighthero_set_pulse(CTRL_G_RIGHT, half_life_seconds);
-	lighthero_set_pulse(CTRL_B_RIGHT, half_life_seconds);
+	lighthero_set_pulse(CTRL_R_RIGHT, 255, half_life_seconds);
+	lighthero_set_pulse(CTRL_G_RIGHT, 255, half_life_seconds);
+	lighthero_set_pulse(CTRL_B_RIGHT, 255, half_life_seconds);
 	// lighthero_set_pulse(CTRL_W_RIGHT, half_life_seconds);
 }
 
@@ -42,12 +42,13 @@ void do_justin_things()
 {
 	lighthero_init();
 
-	float bps = 60.0/60.0;
+	float bps = 9.0/60.0;
 
 	float spb = 1/bps;
 
 	uint64_t micros_per_beat = spb*1000*1000*.5;
-	float normal_pulse = 0.0050;
+	// float normal_pulse = 0.0050;
+	float normal_pulse = 0.120;
 
 	lighthero_set_value(0,0);
 	lighthero_set_value(1,0);
@@ -60,13 +61,15 @@ void do_justin_things()
 	while (1)
 	{
 		
-		left_on(normal_pulse);
+		lighthero_set_pulse(CTRL_B_LEFT, 255, normal_pulse);
 		refresh_for_awhile(micros_per_beat);
-		lighthero_set_pulse(CTRL_B_LEFT, normal_pulse);
+		lighthero_set_pulse(CTRL_R_RIGHT, 255, normal_pulse);
 		refresh_for_awhile(micros_per_beat);
-		right_on(normal_pulse);
+		lighthero_set_pulse(CTRL_B_LEFT, 255, normal_pulse);
+		lighthero_set_pulse(CTRL_R_LEFT, 100, normal_pulse);
 		refresh_for_awhile(micros_per_beat);
-		lighthero_set_pulse(CTRL_R_RIGHT, normal_pulse);
+		lighthero_set_pulse(CTRL_R_RIGHT, 255, normal_pulse);
+		lighthero_set_pulse(CTRL_B_RIGHT, 100, normal_pulse);
 		refresh_for_awhile(micros_per_beat);
 	}
 }

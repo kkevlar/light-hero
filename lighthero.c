@@ -54,10 +54,10 @@ void lighthero_main()
 	do_justin_things();
 }
 
-void lighthero_set_pulse(int ledindex, float half_life_seconds)
+void lighthero_set_pulse(int ledindex, int intensity, float half_life_seconds)
 {
 	uint64_t mymicros = lighthero_micros();
-	states[ledindex].intensity = 255;
+	states[ledindex].intensity = intensity;
 	states[ledindex].setmicros = mymicros;
 	states[ledindex].decay = 0.69314718056;
 	states[ledindex].decay /= half_life_seconds * 10e6;
