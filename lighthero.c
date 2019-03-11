@@ -101,12 +101,12 @@ void lighthero_swap_sides()
 	states[5] = temp;
 }
 
-// void lighthero_flush()
-// {
-// 	for(int i = 0; i < CTRL_COUNT; i++)
-// 	{
-// 		io_set_control(i, states[i].intensity);
-// 	}
-// }
+void lighthero_flush()
+{
+	for(int i = 0; i < CTRL_COUNT; i++)
+	{
+		io_set_control(i, states[i].intensity);
+	}
+}
 
 

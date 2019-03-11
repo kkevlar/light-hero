@@ -1,5 +1,5 @@
 
-#include "justin.h"
+#include "justin.hpp"
 
 void left_on(float half_life_seconds)
 {
@@ -41,14 +41,15 @@ void refresh_for_awhile(uint64_t length)
 void do_justin_things()
 {
 	lighthero_init();
+	Serial.begin(9600);
 
-	float bps = 9.0/60.0;
+	float bps = 60.0/60.0;
 
 	float spb = 1/bps;
 
 	uint64_t micros_per_beat = spb*1000*1000*.5;
-	// float normal_pulse = 0.0050;
-	float normal_pulse = 0.120;
+	float normal_pulse = 0.0050;
+	// float normal_pulse = 0.120;
 
 	lighthero_set_value(0,0);
 	lighthero_set_value(1,0);
@@ -61,16 +62,16 @@ void do_justin_things()
 	while (1)
 	{
 		
-		lighthero_set_pulse(CTRL_B_LEFT, 255, normal_pulse);
+	if (Serial.available() >0) {
+      char c = Serial.read();
+      if(c >= '0' && c <= '6')
+      {
+      	c -= '0';
+      	lighthero_set_pulse(c, 255, normal_pulse);
 		refresh_for_awhile(micros_per_beat);
-		lighthero_set_pulse(CTRL_R_RIGHT, 255, normal_pulse);
-		refresh_for_awhile(micros_per_beat);
-		lighthero_set_pulse(CTRL_B_LEFT, 255, normal_pulse);
-		lighthero_set_pulse(CTRL_R_LEFT, 100, normal_pulse);
-		refresh_for_awhile(micros_per_beat);
-		lighthero_set_pulse(CTRL_R_RIGHT, 255, normal_pulse);
-		lighthero_set_pulse(CTRL_B_RIGHT, 100, normal_pulse);
-		refresh_for_awhile(micros_per_beat);
+      }
+    } 
+		
 	}
 }
 

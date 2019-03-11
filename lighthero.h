@@ -15,7 +15,7 @@
 #define CTRL_W_RIGHT 6
 
 #include "platform.h"
-#include "justin.h"
+#include "justin.hpp"
 
 struct _led_state_
 {
