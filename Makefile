@@ -1,66 +1,60 @@
 
+INOMAKE_NORMAL_DEPS=ino/Makefile \
+ino/ino.cpp\
+ino/ino.h\
+ino/justin.cpp\
+ino/justin.h\
+ino/lighthero.cpp\
+ino/lighthero.h\
+ino/platform.h
 
-all: inoup
+INOMAKE_SPECIAL_DEPS=ino \
+ino/Arduino-Makefile \
 
-rundemo: demo
-	./demo | java LightHeroDemo 
+all: ino inomake
 
+ino:
+	mkdir -p ino
 
-demo: LightHeroDemo demo.o lighthero.o justin.o demo.h lighthero.h platform.h
-	gcc demo.o lighthero.o justin.o -lm -o demo 
+ino/Makefile: INO-Makefile | ino
+	cp INO-Makefile ino/Makefile
 
-demo.o: demo.c demo.h lighthero.h platform.h
-	gcc -c demo.c -o demo.o
+ino/Arduino-Makefile: | ino
+	cd ino && git clone git@github.com:sudar/Arduino-Makefile.git
 
-lighthero.o: lighthero.c lighthero.h platform.h
-	gcc -c lighthero.c -o lighthero.o
+ino/lighthero.cpp: lighthero/lighthero.ino | ino
+	cp lighthero/lighthero.ino ino/lighthero.cpp
 
-justin.o: justin.cpp justin.h lighthero.h 
-	g++ -c justin.cpp -o justin.o
+ino/lighthero.h: lighthero/lighthero.h | ino
+	cp lighthero/lighthero.h ino/lighthero.h
 
-LightHeroDemo: LightHeroDemo.java
-	javac LightHeroDemo.java
+ino/justin.h: lighthero/justin.h | ino
+	cp lighthero/justin.h ino/justin.h
 
-inoup: inobuild
-	cd nano; ino upload -m nano328
+ino/justin.cpp: lighthero/justin.ino | ino
+	cp lighthero/justin.ino ino/justin.cpp
 
-nano/src:
-	cd nano; ino init
-	cd nano/src; rm -rf *
+ino/ino.h: lighthero/ino.h | ino
+	cp lighthero/ino.h ino/ino.h
 
-inobuild: nano nano/src nano/src/justin.cpp nano/src/ino.c nano/src/ino.h nano/src/lighthero.h nano/src/lighthero.c nano/src/platform.h  nano/src/justin.hpp
-	cd nano; ino build -m nano328 > /dev/null
+ino/ino.cpp: lighthero/ino.ino | ino
+	cp lighthero/ino.ino ino/ino.cpp
 
-nano/src/ino.c: ino.c
-	cp ino.c nano/src/ino.c
+ino/platform.h: lighthero/platform.h | ino
+	cp lighthero/platform.h ino/platform.h
 
-nano/src/ino.h: ino.h
-	cp ino.h nano/src/ino.h
+inomake: $(INOMAKE_NORMAL_DEPS) | $(INOMAKE_SPECIAL_DEPS)
+	cd ino && make
 
-nano/src/lighthero.h: lighthero.h
-	cp lighthero.h nano/src/lighthero.h
+upload: inomake
+	cd ino && make upload
 
-nano/src/lighthero.c: lighthero.c nano/src/justin.hpp
-	cp lighthero.c nano/src/lighthero.c
-
-nano/src/justin.hpp: justin.hpp
-	cp justin.hpp nano/src/justin.hpp
-
-nano/src/justin.cpp: justin.cpp
-	cp justin.cpp nano/src/justin.cpp
-
-nano/src/platform.h: platform.h
-	cat platform.h | sed 's;demo\.h;ino.h;' > nano/src/platform.h
-
-nano:
-	mkdir nano
-	cd nano; rm -rf *
+purge: clean
+	rm -rf ino
 
 clean:
-	rm -f *.class
-	rm -f LightHeroDemo
-	rm -f *.o
-	rm -rf nano
-
-
+	cp -rf ino/Arduino-Makefile .
+	rm -rf ino
+	mkdir -p ino
+	mv Arduino-Makefile ino
 

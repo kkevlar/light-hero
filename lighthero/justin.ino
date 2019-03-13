@@ -1,5 +1,5 @@
 
-#include "justin.hpp"
+#include "justin.h"
 
 void left_on(float half_life_seconds)
 {
