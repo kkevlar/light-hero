@@ -1,6 +1,6 @@
 
 ARDUINO_LIBS = 
-BOARD_TAG = nano
+BOARD_TAG = nano328
 BOARDS_TXT=/usr/share/arduino/hardware/arduino/boards.txt
 PROJECT_DIR = .
 ARDMK_DIR=Arduino-Makefile

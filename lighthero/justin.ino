@@ -48,7 +48,7 @@ void do_justin_things()
 	float spb = 1/bps;
 
 	uint64_t micros_per_beat = spb*1000*1000*.5;
-	float normal_pulse = 0.0050;
+	float normal_pulse = 0.008;
 	// float normal_pulse = 0.120;
 
 	lighthero_set_value(0,0);
@@ -64,13 +64,15 @@ void do_justin_things()
 		
 	if (Serial.available() >0) {
       char c = Serial.read();
-      if(c >= '0' && c <= '6')
+      if(c >= '1' && c <= '7')
       {
-      	c -= '0';
+      	c -= '1';
       	lighthero_set_pulse(c, 255, normal_pulse);
-		refresh_for_awhile(micros_per_beat);
+      	c += '1';
+         Serial.println(c);
       }
     } 
+		refresh_for_awhile(micros_per_beat*0.1f);
 		
 	}
 }
