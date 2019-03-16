@@ -48,7 +48,7 @@ void do_justin_things()
 	float spb = 1/bps;
 
 	uint64_t micros_per_beat = spb*1000*1000*.5;
-	float normal_pulse = 0.008;
+	float normal_pulse = 0.005;
 	// float normal_pulse = 0.120;
 
 	lighthero_set_value(0,0);
