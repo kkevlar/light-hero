@@ -4568,7 +4568,7 @@ This footprint was designed to help hold the alignment of a through-hole compone
 <part name="2K" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="10OHM" device="-HORIZ-1/4W-1%" package3d_urn="urn:adsk.eagle:package:39658/1" value="2k"/>
 <part name="GND3" library="SparkFun-PowerSymbols" library_urn="urn:adsk.eagle:library:530" deviceset="GND" device=""/>
 <part name="Q01" library="SparkFun-Connectors" deviceset="CONN_03" device="" value="IRFZ44N"/>
-<part name="10K0" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="10KOHM" device="-HORIZ-1/4W-1%" package3d_urn="urn:adsk.eagle:package:39658/1" value="10k"/>
+<part name="R_16" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="10KOHM" device="-HORIZ-1/4W-1%" package3d_urn="urn:adsk.eagle:package:39658/1" value="10k"/>
 <part name="Q02" library="SparkFun-Connectors" deviceset="CONN_03" device="" value="IRFZ44N"/>
 <part name="Q03" library="SparkFun-Connectors" deviceset="CONN_03" device="" value="IRFZ44N"/>
 <part name="Q04" library="SparkFun-Connectors" deviceset="CONN_03" device="" value="IRFZ44N"/>
@@ -4584,21 +4584,21 @@ This footprint was designed to help hold the alignment of a through-hole compone
 <part name="Q14" library="SparkFun-Connectors" deviceset="CONN_03" device="" value="IRFZ44N"/>
 <part name="Q15" library="SparkFun-Connectors" deviceset="CONN_03" device="" value="IRFZ44N"/>
 <part name="Q16" library="SparkFun-Connectors" deviceset="CONN_03" device="" value="IRFZ44N"/>
-<part name="10K1" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="10KOHM" device="-HORIZ-1/4W-1%" package3d_urn="urn:adsk.eagle:package:39658/1" value="10k"/>
-<part name="10K2" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="10KOHM" device="-HORIZ-1/4W-1%" package3d_urn="urn:adsk.eagle:package:39658/1" value="10k"/>
-<part name="10K3" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="10KOHM" device="-HORIZ-1/4W-1%" package3d_urn="urn:adsk.eagle:package:39658/1" value="10k"/>
-<part name="10K4" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="10KOHM" device="-HORIZ-1/4W-1%" package3d_urn="urn:adsk.eagle:package:39658/1" value="10k"/>
-<part name="10K6" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="10KOHM" device="-HORIZ-1/4W-1%" package3d_urn="urn:adsk.eagle:package:39658/1" value="10k"/>
-<part name="10K7" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="10KOHM" device="-HORIZ-1/4W-1%" package3d_urn="urn:adsk.eagle:package:39658/1" value="10k"/>
-<part name="10K8" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="10KOHM" device="-HORIZ-1/4W-1%" package3d_urn="urn:adsk.eagle:package:39658/1" value="10k"/>
-<part name="10K10" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="10KOHM" device="-HORIZ-1/4W-1%" package3d_urn="urn:adsk.eagle:package:39658/1" value="10k"/>
-<part name="10K11" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="10KOHM" device="-HORIZ-1/4W-1%" package3d_urn="urn:adsk.eagle:package:39658/1" value="10k"/>
-<part name="10K12" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="10KOHM" device="-HORIZ-1/4W-1%" package3d_urn="urn:adsk.eagle:package:39658/1" value="10k"/>
-<part name="10K13" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="10KOHM" device="-HORIZ-1/4W-1%" package3d_urn="urn:adsk.eagle:package:39658/1" value="10k"/>
-<part name="10K14" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="10KOHM" device="-HORIZ-1/4W-1%" package3d_urn="urn:adsk.eagle:package:39658/1" value="10k"/>
-<part name="10K15" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="10KOHM" device="-HORIZ-1/4W-1%" package3d_urn="urn:adsk.eagle:package:39658/1" value="10k"/>
-<part name="10K16" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="10KOHM" device="-HORIZ-1/4W-1%" package3d_urn="urn:adsk.eagle:package:39658/1" value="10k"/>
-<part name="10K17" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="10KOHM" device="-HORIZ-1/4W-1%" package3d_urn="urn:adsk.eagle:package:39658/1" value="10k"/>
+<part name="R_01" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="10KOHM" device="-HORIZ-1/4W-1%" package3d_urn="urn:adsk.eagle:package:39658/1" value="10k"/>
+<part name="R_02" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="10KOHM" device="-HORIZ-1/4W-1%" package3d_urn="urn:adsk.eagle:package:39658/1" value="10k"/>
+<part name="R_03" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="10KOHM" device="-HORIZ-1/4W-1%" package3d_urn="urn:adsk.eagle:package:39658/1" value="10k"/>
+<part name="R_04" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="10KOHM" device="-HORIZ-1/4W-1%" package3d_urn="urn:adsk.eagle:package:39658/1" value="10k"/>
+<part name="R_05" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="10KOHM" device="-HORIZ-1/4W-1%" package3d_urn="urn:adsk.eagle:package:39658/1" value="10k"/>
+<part name="R_06" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="10KOHM" device="-HORIZ-1/4W-1%" package3d_urn="urn:adsk.eagle:package:39658/1" value="10k"/>
+<part name="R_07" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="10KOHM" device="-HORIZ-1/4W-1%" package3d_urn="urn:adsk.eagle:package:39658/1" value="10k"/>
+<part name="R_08" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="10KOHM" device="-HORIZ-1/4W-1%" package3d_urn="urn:adsk.eagle:package:39658/1" value="10k"/>
+<part name="R_09" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="10KOHM" device="-HORIZ-1/4W-1%" package3d_urn="urn:adsk.eagle:package:39658/1" value="10k"/>
+<part name="R_10" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="10KOHM" device="-HORIZ-1/4W-1%" package3d_urn="urn:adsk.eagle:package:39658/1" value="10k"/>
+<part name="R_11" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="10KOHM" device="-HORIZ-1/4W-1%" package3d_urn="urn:adsk.eagle:package:39658/1" value="10k"/>
+<part name="R_12" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="10KOHM" device="-HORIZ-1/4W-1%" package3d_urn="urn:adsk.eagle:package:39658/1" value="10k"/>
+<part name="R_13" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="10KOHM" device="-HORIZ-1/4W-1%" package3d_urn="urn:adsk.eagle:package:39658/1" value="10k"/>
+<part name="R_14" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="10KOHM" device="-HORIZ-1/4W-1%" package3d_urn="urn:adsk.eagle:package:39658/1" value="10k"/>
+<part name="R_15" library="SparkFun-Resistors" library_urn="urn:adsk.eagle:library:532" deviceset="10KOHM" device="-HORIZ-1/4W-1%" package3d_urn="urn:adsk.eagle:package:39658/1" value="10k"/>
 <part name="Q18" library="SparkFun-Connectors" deviceset="CONN_03" device="" value="IRFZ44N"/>
 <part name="Q17" library="SparkFun-Connectors" deviceset="CONN_03" device="" value="IRFZ44N"/>
 <part name="SUPPLY3" library="SparkFun-PowerSymbols" library_urn="urn:adsk.eagle:library:530" deviceset="12V" device=""/>
@@ -4660,7 +4660,7 @@ This footprint was designed to help hold the alignment of a through-hole compone
 <attribute name="VALUE" x="157.48" y="81.534" size="1.778" layer="96" font="vector"/>
 <attribute name="NAME" x="157.48" y="94.488" size="1.778" layer="95" font="vector"/>
 </instance>
-<instance part="10K0" gate="G$1" x="200.66" y="104.14" smashed="yes">
+<instance part="R_16" gate="G$1" x="200.66" y="104.14" smashed="yes">
 <attribute name="NAME" x="200.66" y="105.664" size="1.778" layer="95" font="vector" align="bottom-center"/>
 <attribute name="VALUE" x="200.66" y="102.616" size="1.778" layer="96" font="vector" align="top-center"/>
 </instance>
@@ -4724,63 +4724,63 @@ This footprint was designed to help hold the alignment of a through-hole compone
 <attribute name="VALUE" x="157.48" y="99.314" size="1.778" layer="96" font="vector"/>
 <attribute name="NAME" x="157.48" y="112.268" size="1.778" layer="95" font="vector"/>
 </instance>
-<instance part="10K1" gate="G$1" x="200.66" y="86.36" smashed="yes">
+<instance part="R_01" gate="G$1" x="200.66" y="86.36" smashed="yes">
 <attribute name="NAME" x="200.66" y="87.884" size="1.778" layer="95" font="vector" align="bottom-center"/>
 <attribute name="VALUE" x="200.66" y="84.836" size="1.778" layer="96" font="vector" align="top-center"/>
 </instance>
-<instance part="10K2" gate="G$1" x="200.66" y="66.04" smashed="yes">
+<instance part="R_02" gate="G$1" x="200.66" y="66.04" smashed="yes">
 <attribute name="NAME" x="200.66" y="67.564" size="1.778" layer="95" font="vector" align="bottom-center"/>
 <attribute name="VALUE" x="200.66" y="64.516" size="1.778" layer="96" font="vector" align="top-center"/>
 </instance>
-<instance part="10K3" gate="G$1" x="200.66" y="50.8" smashed="yes">
+<instance part="R_03" gate="G$1" x="200.66" y="50.8" smashed="yes">
 <attribute name="NAME" x="200.66" y="52.324" size="1.778" layer="95" font="vector" align="bottom-center"/>
 <attribute name="VALUE" x="200.66" y="49.276" size="1.778" layer="96" font="vector" align="top-center"/>
 </instance>
-<instance part="10K4" gate="G$1" x="200.66" y="30.48" smashed="yes">
+<instance part="R_04" gate="G$1" x="200.66" y="30.48" smashed="yes">
 <attribute name="NAME" x="200.66" y="32.004" size="1.778" layer="95" font="vector" align="bottom-center"/>
 <attribute name="VALUE" x="200.66" y="28.956" size="1.778" layer="96" font="vector" align="top-center"/>
 </instance>
-<instance part="10K6" gate="G$1" x="200.66" y="10.16" smashed="yes">
+<instance part="R_05" gate="G$1" x="200.66" y="10.16" smashed="yes">
 <attribute name="NAME" x="200.66" y="11.684" size="1.778" layer="95" font="vector" align="bottom-center"/>
 <attribute name="VALUE" x="200.66" y="8.636" size="1.778" layer="96" font="vector" align="top-center"/>
 </instance>
-<instance part="10K7" gate="G$1" x="200.66" y="-10.16" smashed="yes">
+<instance part="R_06" gate="G$1" x="200.66" y="-10.16" smashed="yes">
 <attribute name="NAME" x="200.66" y="-8.636" size="1.778" layer="95" font="vector" align="bottom-center"/>
 <attribute name="VALUE" x="200.66" y="-11.684" size="1.778" layer="96" font="vector" align="top-center"/>
 </instance>
-<instance part="10K8" gate="G$1" x="200.66" y="-30.48" smashed="yes">
+<instance part="R_07" gate="G$1" x="200.66" y="-30.48" smashed="yes">
 <attribute name="NAME" x="200.66" y="-28.956" size="1.778" layer="95" font="vector" align="bottom-center"/>
 <attribute name="VALUE" x="200.66" y="-32.004" size="1.778" layer="96" font="vector" align="top-center"/>
 </instance>
-<instance part="10K10" gate="G$1" x="200.66" y="-50.8" smashed="yes">
+<instance part="R_08" gate="G$1" x="200.66" y="-50.8" smashed="yes">
 <attribute name="NAME" x="200.66" y="-49.276" size="1.778" layer="95" font="vector" align="bottom-center"/>
 <attribute name="VALUE" x="200.66" y="-52.324" size="1.778" layer="96" font="vector" align="top-center"/>
 </instance>
-<instance part="10K11" gate="G$1" x="200.66" y="-68.58" smashed="yes">
+<instance part="R_09" gate="G$1" x="200.66" y="-68.58" smashed="yes">
 <attribute name="NAME" x="200.66" y="-67.056" size="1.778" layer="95" font="vector" align="bottom-center"/>
 <attribute name="VALUE" x="200.66" y="-70.104" size="1.778" layer="96" font="vector" align="top-center"/>
 </instance>
-<instance part="10K12" gate="G$1" x="200.66" y="-86.36" smashed="yes">
+<instance part="R_10" gate="G$1" x="200.66" y="-86.36" smashed="yes">
 <attribute name="NAME" x="200.66" y="-84.836" size="1.778" layer="95" font="vector" align="bottom-center"/>
 <attribute name="VALUE" x="200.66" y="-87.884" size="1.778" layer="96" font="vector" align="top-center"/>
 </instance>
-<instance part="10K13" gate="G$1" x="200.66" y="-106.68" smashed="yes">
+<instance part="R_11" gate="G$1" x="200.66" y="-106.68" smashed="yes">
 <attribute name="NAME" x="200.66" y="-105.156" size="1.778" layer="95" font="vector" align="bottom-center"/>
 <attribute name="VALUE" x="200.66" y="-108.204" size="1.778" layer="96" font="vector" align="top-center"/>
 </instance>
-<instance part="10K14" gate="G$1" x="200.66" y="-121.92" smashed="yes">
+<instance part="R_12" gate="G$1" x="200.66" y="-121.92" smashed="yes">
 <attribute name="NAME" x="200.66" y="-120.396" size="1.778" layer="95" font="vector" align="bottom-center"/>
 <attribute name="VALUE" x="200.66" y="-123.444" size="1.778" layer="96" font="vector" align="top-center"/>
 </instance>
-<instance part="10K15" gate="G$1" x="200.66" y="-139.7" smashed="yes">
+<instance part="R_13" gate="G$1" x="200.66" y="-139.7" smashed="yes">
 <attribute name="NAME" x="200.66" y="-138.176" size="1.778" layer="95" font="vector" align="bottom-center"/>
 <attribute name="VALUE" x="200.66" y="-141.224" size="1.778" layer="96" font="vector" align="top-center"/>
 </instance>
-<instance part="10K16" gate="G$1" x="200.66" y="-157.48" smashed="yes">
+<instance part="R_14" gate="G$1" x="200.66" y="-157.48" smashed="yes">
 <attribute name="NAME" x="200.66" y="-155.956" size="1.778" layer="95" font="vector" align="bottom-center"/>
 <attribute name="VALUE" x="200.66" y="-159.004" size="1.778" layer="96" font="vector" align="top-center"/>
 </instance>
-<instance part="10K17" gate="G$1" x="200.66" y="-175.26" smashed="yes">
+<instance part="R_15" gate="G$1" x="200.66" y="-175.26" smashed="yes">
 <attribute name="NAME" x="200.66" y="-173.736" size="1.778" layer="95" font="vector" align="bottom-center"/>
 <attribute name="VALUE" x="200.66" y="-176.784" size="1.778" layer="96" font="vector" align="top-center"/>
 </instance>
@@ -5177,7 +5177,7 @@ This footprint was designed to help hold the alignment of a through-hole compone
 </net>
 <net name="N$5" class="0">
 <segment>
-<pinref part="10K8" gate="G$1" pin="1"/>
+<pinref part="R_07" gate="G$1" pin="1"/>
 <pinref part="Q07" gate="J$1" pin="1"/>
 <wire x1="167.64" y1="-30.48" x2="195.58" y2="-30.48" width="0.1524" layer="91"/>
 </segment>
@@ -5185,70 +5185,70 @@ This footprint was designed to help hold the alignment of a through-hole compone
 <net name="N$6" class="0">
 <segment>
 <pinref part="Q16" gate="J$1" pin="1"/>
-<pinref part="10K0" gate="G$1" pin="1"/>
+<pinref part="R_16" gate="G$1" pin="1"/>
 <wire x1="167.64" y1="104.14" x2="195.58" y2="104.14" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$8" class="0">
 <segment>
 <pinref part="Q01" gate="J$1" pin="1"/>
-<pinref part="10K1" gate="G$1" pin="1"/>
+<pinref part="R_01" gate="G$1" pin="1"/>
 <wire x1="167.64" y1="86.36" x2="195.58" y2="86.36" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$10" class="0">
 <segment>
 <pinref part="Q02" gate="J$1" pin="1"/>
-<pinref part="10K2" gate="G$1" pin="1"/>
+<pinref part="R_02" gate="G$1" pin="1"/>
 <wire x1="167.64" y1="66.04" x2="195.58" y2="66.04" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$12" class="0">
 <segment>
 <pinref part="Q03" gate="J$1" pin="1"/>
-<pinref part="10K3" gate="G$1" pin="1"/>
+<pinref part="R_03" gate="G$1" pin="1"/>
 <wire x1="167.64" y1="50.8" x2="195.58" y2="50.8" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$2" class="0">
 <segment>
 <pinref part="Q04" gate="J$1" pin="1"/>
-<pinref part="10K4" gate="G$1" pin="1"/>
+<pinref part="R_04" gate="G$1" pin="1"/>
 <wire x1="167.64" y1="30.48" x2="195.58" y2="30.48" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$14" class="0">
 <segment>
 <pinref part="Q05" gate="J$1" pin="1"/>
-<pinref part="10K6" gate="G$1" pin="1"/>
+<pinref part="R_05" gate="G$1" pin="1"/>
 <wire x1="167.64" y1="10.16" x2="195.58" y2="10.16" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$16" class="0">
 <segment>
 <pinref part="Q06" gate="J$1" pin="1"/>
-<pinref part="10K7" gate="G$1" pin="1"/>
+<pinref part="R_06" gate="G$1" pin="1"/>
 <wire x1="167.64" y1="-10.16" x2="195.58" y2="-10.16" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$18" class="0">
 <segment>
 <pinref part="Q08" gate="J$1" pin="1"/>
-<pinref part="10K10" gate="G$1" pin="1"/>
+<pinref part="R_08" gate="G$1" pin="1"/>
 <wire x1="167.64" y1="-50.8" x2="195.58" y2="-50.8" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$20" class="0">
 <segment>
 <pinref part="Q09" gate="J$1" pin="1"/>
-<pinref part="10K11" gate="G$1" pin="1"/>
+<pinref part="R_09" gate="G$1" pin="1"/>
 <wire x1="167.64" y1="-68.58" x2="195.58" y2="-68.58" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$22" class="0">
 <segment>
 <pinref part="Q10" gate="J$1" pin="1"/>
-<pinref part="10K12" gate="G$1" pin="1"/>
+<pinref part="R_10" gate="G$1" pin="1"/>
 <wire x1="167.64" y1="-86.36" x2="195.58" y2="-86.36" width="0.1524" layer="91"/>
 </segment>
 </net>
@@ -5256,103 +5256,103 @@ This footprint was designed to help hold the alignment of a through-hole compone
 <segment>
 <pinref part="Q11" gate="J$1" pin="1"/>
 <wire x1="167.64" y1="-104.14" x2="195.58" y2="-104.14" width="0.1524" layer="91"/>
-<pinref part="10K13" gate="G$1" pin="1"/>
+<pinref part="R_11" gate="G$1" pin="1"/>
 <wire x1="195.58" y1="-104.14" x2="195.58" y2="-106.68" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$26" class="0">
 <segment>
 <pinref part="Q12" gate="J$1" pin="1"/>
-<pinref part="10K14" gate="G$1" pin="1"/>
+<pinref part="R_12" gate="G$1" pin="1"/>
 <wire x1="167.64" y1="-121.92" x2="195.58" y2="-121.92" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$28" class="0">
 <segment>
 <pinref part="Q13" gate="J$1" pin="1"/>
-<pinref part="10K15" gate="G$1" pin="1"/>
+<pinref part="R_13" gate="G$1" pin="1"/>
 <wire x1="167.64" y1="-139.7" x2="195.58" y2="-139.7" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$30" class="0">
 <segment>
 <pinref part="Q14" gate="J$1" pin="1"/>
-<pinref part="10K16" gate="G$1" pin="1"/>
+<pinref part="R_14" gate="G$1" pin="1"/>
 <wire x1="167.64" y1="-157.48" x2="195.58" y2="-157.48" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="N$32" class="0">
 <segment>
 <pinref part="Q15" gate="J$1" pin="1"/>
-<pinref part="10K17" gate="G$1" pin="1"/>
+<pinref part="R_15" gate="G$1" pin="1"/>
 <wire x1="167.64" y1="-175.26" x2="195.58" y2="-175.26" width="0.1524" layer="91"/>
 </segment>
 </net>
 <net name="12V" class="0">
 <segment>
-<pinref part="10K17" gate="G$1" pin="2"/>
+<pinref part="R_15" gate="G$1" pin="2"/>
 <wire x1="205.74" y1="-175.26" x2="218.44" y2="-175.26" width="0.1524" layer="91"/>
-<pinref part="10K16" gate="G$1" pin="2"/>
+<pinref part="R_14" gate="G$1" pin="2"/>
 <wire x1="205.74" y1="-157.48" x2="218.44" y2="-157.48" width="0.1524" layer="91"/>
 <wire x1="218.44" y1="-157.48" x2="223.52" y2="-157.48" width="0.1524" layer="91"/>
 <wire x1="218.44" y1="-175.26" x2="218.44" y2="-157.48" width="0.1524" layer="91"/>
 <junction x="218.44" y="-157.48"/>
-<pinref part="10K15" gate="G$1" pin="2"/>
+<pinref part="R_13" gate="G$1" pin="2"/>
 <wire x1="205.74" y1="-139.7" x2="218.44" y2="-139.7" width="0.1524" layer="91"/>
 <wire x1="218.44" y1="-139.7" x2="223.52" y2="-139.7" width="0.1524" layer="91"/>
 <wire x1="218.44" y1="-157.48" x2="218.44" y2="-139.7" width="0.1524" layer="91"/>
 <junction x="218.44" y="-139.7"/>
-<pinref part="10K14" gate="G$1" pin="2"/>
+<pinref part="R_12" gate="G$1" pin="2"/>
 <wire x1="205.74" y1="-121.92" x2="218.44" y2="-121.92" width="0.1524" layer="91"/>
 <wire x1="218.44" y1="-121.92" x2="220.98" y2="-121.92" width="0.1524" layer="91"/>
 <wire x1="218.44" y1="-139.7" x2="218.44" y2="-121.92" width="0.1524" layer="91"/>
 <junction x="218.44" y="-121.92"/>
-<pinref part="10K13" gate="G$1" pin="2"/>
+<pinref part="R_11" gate="G$1" pin="2"/>
 <wire x1="205.74" y1="-106.68" x2="218.44" y2="-106.68" width="0.1524" layer="91"/>
 <wire x1="218.44" y1="-121.92" x2="218.44" y2="-106.68" width="0.1524" layer="91"/>
-<pinref part="10K12" gate="G$1" pin="2"/>
+<pinref part="R_10" gate="G$1" pin="2"/>
 <wire x1="205.74" y1="-86.36" x2="218.44" y2="-86.36" width="0.1524" layer="91"/>
 <wire x1="218.44" y1="-106.68" x2="218.44" y2="-86.36" width="0.1524" layer="91"/>
 <junction x="218.44" y="-106.68"/>
-<pinref part="10K11" gate="G$1" pin="2"/>
+<pinref part="R_09" gate="G$1" pin="2"/>
 <wire x1="205.74" y1="-68.58" x2="218.44" y2="-68.58" width="0.1524" layer="91"/>
 <wire x1="218.44" y1="-86.36" x2="218.44" y2="-68.58" width="0.1524" layer="91"/>
 <junction x="218.44" y="-86.36"/>
-<pinref part="10K10" gate="G$1" pin="2"/>
+<pinref part="R_08" gate="G$1" pin="2"/>
 <wire x1="205.74" y1="-50.8" x2="218.44" y2="-50.8" width="0.1524" layer="91"/>
 <wire x1="218.44" y1="-68.58" x2="218.44" y2="-50.8" width="0.1524" layer="91"/>
 <junction x="218.44" y="-68.58"/>
-<pinref part="10K8" gate="G$1" pin="2"/>
+<pinref part="R_07" gate="G$1" pin="2"/>
 <wire x1="205.74" y1="-30.48" x2="218.44" y2="-30.48" width="0.1524" layer="91"/>
 <wire x1="218.44" y1="-50.8" x2="218.44" y2="-30.48" width="0.1524" layer="91"/>
 <wire x1="218.44" y1="-30.48" x2="218.44" y2="-10.16" width="0.1524" layer="91"/>
 <junction x="218.44" y="-30.48"/>
-<pinref part="10K7" gate="G$1" pin="2"/>
+<pinref part="R_06" gate="G$1" pin="2"/>
 <wire x1="205.74" y1="-10.16" x2="218.44" y2="-10.16" width="0.1524" layer="91"/>
 <wire x1="218.44" y1="-10.16" x2="218.44" y2="10.16" width="0.1524" layer="91"/>
 <junction x="218.44" y="-10.16"/>
-<pinref part="10K6" gate="G$1" pin="2"/>
+<pinref part="R_05" gate="G$1" pin="2"/>
 <wire x1="205.74" y1="10.16" x2="218.44" y2="10.16" width="0.1524" layer="91"/>
 <wire x1="218.44" y1="10.16" x2="218.44" y2="30.48" width="0.1524" layer="91"/>
 <junction x="218.44" y="10.16"/>
-<pinref part="10K4" gate="G$1" pin="2"/>
+<pinref part="R_04" gate="G$1" pin="2"/>
 <wire x1="205.74" y1="30.48" x2="213.36" y2="30.48" width="0.1524" layer="91"/>
-<pinref part="10K3" gate="G$1" pin="2"/>
+<pinref part="R_03" gate="G$1" pin="2"/>
 <wire x1="213.36" y1="30.48" x2="218.44" y2="30.48" width="0.1524" layer="91"/>
 <wire x1="205.74" y1="50.8" x2="213.36" y2="50.8" width="0.1524" layer="91"/>
 <wire x1="213.36" y1="50.8" x2="215.9" y2="50.8" width="0.1524" layer="91"/>
 <wire x1="213.36" y1="30.48" x2="213.36" y2="50.8" width="0.1524" layer="91"/>
 <junction x="213.36" y="30.48"/>
 <junction x="213.36" y="50.8"/>
-<pinref part="10K2" gate="G$1" pin="2"/>
+<pinref part="R_02" gate="G$1" pin="2"/>
 <wire x1="205.74" y1="66.04" x2="213.36" y2="66.04" width="0.1524" layer="91"/>
 <wire x1="213.36" y1="66.04" x2="215.9" y2="66.04" width="0.1524" layer="91"/>
 <wire x1="213.36" y1="50.8" x2="213.36" y2="66.04" width="0.1524" layer="91"/>
 <junction x="213.36" y="66.04"/>
-<pinref part="10K1" gate="G$1" pin="2"/>
+<pinref part="R_01" gate="G$1" pin="2"/>
 <wire x1="205.74" y1="86.36" x2="213.36" y2="86.36" width="0.1524" layer="91"/>
 <wire x1="213.36" y1="66.04" x2="213.36" y2="86.36" width="0.1524" layer="91"/>
-<pinref part="10K0" gate="G$1" pin="2"/>
+<pinref part="R_16" gate="G$1" pin="2"/>
 <wire x1="205.74" y1="104.14" x2="213.36" y2="104.14" width="0.1524" layer="91"/>
 <wire x1="213.36" y1="104.14" x2="215.9" y2="104.14" width="0.1524" layer="91"/>
 <wire x1="215.9" y1="86.36" x2="213.36" y2="86.36" width="0.1524" layer="91"/>
@@ -5360,6 +5360,8 @@ This footprint was designed to help hold the alignment of a through-hole compone
 <junction x="213.36" y="104.14"/>
 <wire x1="213.36" y1="104.14" x2="213.36" y2="121.92" width="0.1524" layer="91"/>
 <pinref part="SUPPLY3" gate="G$1" pin="12V"/>
+<junction x="213.36" y="86.36"/>
+<junction x="218.44" y="-50.8"/>
 </segment>
 <segment>
 <pinref part="U$1" gate="G$1" pin="RAW"/>
@@ -5860,6 +5862,142 @@ This footprint was designed to help hold the alignment of a through-hole compone
 <pinref part="Q04" gate="J$1" pin="2"/>
 <wire x1="167.64" y1="33.02" x2="175.26" y2="33.02" width="0.1524" layer="91"/>
 <label x="175.26" y="33.02" size="1.778" layer="95" xref="yes"/>
+</segment>
+</net>
+<net name="PWM_17" class="0">
+<segment>
+<pinref part="U$1" gate="G$1" pin="D5"/>
+<wire x1="66.04" y1="55.88" x2="68.58" y2="55.88" width="0.1524" layer="91"/>
+<label x="68.58" y="55.88" size="1.778" layer="95" xref="yes"/>
+</segment>
+<segment>
+<pinref part="Q17" gate="J$1" pin="1"/>
+<wire x1="167.64" y1="-215.9" x2="190.5" y2="-215.9" width="0.1524" layer="91"/>
+<label x="190.5" y="-215.9" size="1.778" layer="95" xref="yes"/>
+</segment>
+</net>
+<net name="PWM_18" class="0">
+<segment>
+<pinref part="U$1" gate="G$1" pin="D6"/>
+<wire x1="66.04" y1="58.42" x2="68.58" y2="58.42" width="0.1524" layer="91"/>
+<label x="68.58" y="58.42" size="1.778" layer="95" xref="yes"/>
+</segment>
+<segment>
+<pinref part="Q18" gate="J$1" pin="1"/>
+<wire x1="167.64" y1="-195.58" x2="190.5" y2="-195.58" width="0.1524" layer="91"/>
+<label x="190.5" y="-195.58" size="1.778" layer="95" xref="yes"/>
+</segment>
+</net>
+<net name="PWM_01" class="0">
+<segment>
+<pinref part="U1" gate="G$1" pin="OUT0"/>
+<wire x1="132.08" y1="73.66" x2="134.62" y2="73.66" width="0.1524" layer="91"/>
+<label x="132.08" y="73.66" size="1.778" layer="95" xref="yes"/>
+</segment>
+</net>
+<net name="PWM_02" class="0">
+<segment>
+<pinref part="U1" gate="G$1" pin="OUT1"/>
+<wire x1="132.08" y1="71.12" x2="137.16" y2="71.12" width="0.1524" layer="91"/>
+<label x="142.24" y="71.12" size="1.778" layer="95" xref="yes"/>
+</segment>
+</net>
+<net name="PWM_03" class="0">
+<segment>
+<pinref part="U1" gate="G$1" pin="OUT2"/>
+<wire x1="132.08" y1="68.58" x2="134.62" y2="68.58" width="0.1524" layer="91"/>
+<label x="132.08" y="68.58" size="1.778" layer="95" xref="yes"/>
+</segment>
+</net>
+<net name="PWM_04" class="0">
+<segment>
+<pinref part="U1" gate="G$1" pin="OUT3"/>
+<wire x1="132.08" y1="66.04" x2="137.16" y2="66.04" width="0.1524" layer="91"/>
+<label x="142.24" y="66.04" size="1.778" layer="95" xref="yes"/>
+</segment>
+</net>
+<net name="PWM_05" class="0">
+<segment>
+<pinref part="U1" gate="G$1" pin="OUT4"/>
+<wire x1="132.08" y1="63.5" x2="134.62" y2="63.5" width="0.1524" layer="91"/>
+<label x="132.08" y="63.5" size="1.778" layer="95" xref="yes"/>
+</segment>
+</net>
+<net name="PWM_06" class="0">
+<segment>
+<pinref part="U1" gate="G$1" pin="OUT5"/>
+<wire x1="132.08" y1="60.96" x2="137.16" y2="60.96" width="0.1524" layer="91"/>
+<label x="142.24" y="60.96" size="1.778" layer="95" xref="yes"/>
+</segment>
+</net>
+<net name="PWM_07" class="0">
+<segment>
+<pinref part="U1" gate="G$1" pin="OUT6"/>
+<wire x1="132.08" y1="58.42" x2="134.62" y2="58.42" width="0.1524" layer="91"/>
+<label x="132.08" y="58.42" size="1.778" layer="95" xref="yes"/>
+</segment>
+</net>
+<net name="PWM_08" class="0">
+<segment>
+<pinref part="U1" gate="G$1" pin="OUT7"/>
+<wire x1="132.08" y1="55.88" x2="134.62" y2="55.88" width="0.1524" layer="91"/>
+<label x="142.24" y="55.88" size="1.778" layer="95" xref="yes"/>
+</segment>
+</net>
+<net name="PWM_09" class="0">
+<segment>
+<pinref part="U1" gate="G$1" pin="OUT8"/>
+<wire x1="132.08" y1="53.34" x2="137.16" y2="53.34" width="0.1524" layer="91"/>
+<label x="132.08" y="53.34" size="1.778" layer="95" xref="yes"/>
+</segment>
+</net>
+<net name="PWM_10" class="0">
+<segment>
+<pinref part="U1" gate="G$1" pin="OUT9"/>
+<wire x1="132.08" y1="50.8" x2="134.62" y2="50.8" width="0.1524" layer="91"/>
+<label x="142.24" y="50.8" size="1.778" layer="95" xref="yes"/>
+</segment>
+</net>
+<net name="PWM_11" class="0">
+<segment>
+<pinref part="U1" gate="G$1" pin="OUT10"/>
+<wire x1="132.08" y1="48.26" x2="137.16" y2="48.26" width="0.1524" layer="91"/>
+<label x="132.08" y="48.26" size="1.778" layer="95" xref="yes"/>
+</segment>
+</net>
+<net name="PWM_12" class="0">
+<segment>
+<pinref part="U1" gate="G$1" pin="OUT11"/>
+<wire x1="132.08" y1="45.72" x2="134.62" y2="45.72" width="0.1524" layer="91"/>
+<label x="142.24" y="45.72" size="1.778" layer="95" xref="yes"/>
+</segment>
+</net>
+<net name="PWM_13" class="0">
+<segment>
+<pinref part="U1" gate="G$1" pin="OUT12"/>
+<wire x1="132.08" y1="43.18" x2="137.16" y2="43.18" width="0.1524" layer="91"/>
+<label x="132.08" y="43.18" size="1.778" layer="95" xref="yes"/>
+</segment>
+</net>
+<net name="PWM_14" class="0">
+<segment>
+<pinref part="U1" gate="G$1" pin="OUT13"/>
+<wire x1="132.08" y1="40.64" x2="134.62" y2="40.64" width="0.1524" layer="91"/>
+<label x="142.24" y="40.64" size="1.778" layer="95" xref="yes"/>
+</segment>
+</net>
+<net name="PWM_15" class="0">
+<segment>
+<pinref part="U1" gate="G$1" pin="OUT14"/>
+<wire x1="132.08" y1="38.1" x2="137.16" y2="38.1" width="0.1524" layer="91"/>
+<label x="132.08" y="38.1" size="1.778" layer="95" xref="yes"/>
+</segment>
+</net>
+<net name="PWM_16" class="0">
+<segment>
+<pinref part="U1" gate="G$1" pin="OUT15"/>
+<wire x1="132.08" y1="35.56" x2="134.62" y2="35.56" width="0.1524" layer="91"/>
+<label x="142.24" y="35.56" size="1.778" layer="95" xref="yes"/>
 </segment>
 </net>
 </nets>
