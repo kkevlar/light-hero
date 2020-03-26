@@ -1,5 +1,5 @@
 #version 330 core
-out vec3 color;
+out vec4 color;
 in vec3 fragPos;
 in vec3 fragNor;
 uniform vec3 campos;
@@ -10,6 +10,7 @@ uniform vec3 lp;
 uniform vec3 color_diffuse;
 uniform vec3 color_ambient;
 uniform float w_ambient;
+uniform float alpha;
 
 void main()
 {
@@ -29,6 +30,7 @@ spec = pow(spec,pow_spec);
 color.rgb += vec3(1,1,1)*spec*w_spec;
 
 color.rgb += w_ambient * color_ambient;
+color.a = alpha;
 
 
 }

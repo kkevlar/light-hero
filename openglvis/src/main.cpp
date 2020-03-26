@@ -75,6 +75,11 @@ class Application : public EventCallbacks
 
 public:
 	int kn = 0;
+	bool k1 = false;
+	bool k2 = false;
+	bool k3 = false;
+	bool k4 = false;
+	int releases = 5;
 	WindowManager * windowManager = nullptr;
 
 	// Our shader program
@@ -130,7 +135,35 @@ public:
 			mycam.d = 0;
 		}
 		if (key == GLFW_KEY_N && action == GLFW_PRESS) kn = 1;
-		if (key == GLFW_KEY_N && action == GLFW_RELEASE) kn = 0;
+		if (key == GLFW_KEY_N && action == GLFW_RELEASE)
+		{
+			kn = 0;
+			releases--;
+		}
+		if (key == GLFW_KEY_1 && action == GLFW_PRESS) k1 = 1;
+		if (key == GLFW_KEY_1 && action == GLFW_RELEASE)
+		{
+			k1 = 0;
+			releases--;
+		}
+		if (key == GLFW_KEY_2 && action == GLFW_PRESS) k2 = 1;
+		if (key == GLFW_KEY_2 && action == GLFW_RELEASE) 
+		{
+			k2 = 0;
+			releases--;
+		}
+		if (key == GLFW_KEY_3 && action == GLFW_PRESS) k3 = 1;
+		if (key == GLFW_KEY_3 && action == GLFW_RELEASE)
+		{
+			k3 = 0;
+			releases--;
+		}
+		if (key == GLFW_KEY_4 && action == GLFW_PRESS) k4 = 1;
+		if (key == GLFW_KEY_4 && action == GLFW_RELEASE)
+		{
+			k4 = 0;
+			releases--;
+		}
 	}
 
 	// callback for the mouse when clicked move the triangle when helper functions
@@ -318,6 +351,7 @@ public:
 		shapeprog->addUniform("color_diffuse");
 		shapeprog->addUniform("color_ambient");
 		shapeprog->addUniform("w_ambient");
+		shapeprog->addUniform("alpha");
 		shapeprog->addAttribute("vertPos");
 		shapeprog->addAttribute("vertNor");
 		shapeprog->addAttribute("vertTex");
@@ -337,7 +371,7 @@ public:
 		float aspect = width/(float)height;
 		glViewport(0, 0, width, height);
 		//glPolygonMode(GL_FRONT_AND_BACK, GL_LINE);
-
+		glEnable(GL_BLEND);
 		glClear(GL_COLOR_BUFFER_BIT | GL_DEPTH_BUFFER_BIT);
 				
 		glm::mat4 V, M, P;
@@ -352,20 +386,87 @@ public:
 		renderThings(P, V, w);
 	}
 
+	float fmap(float x, float in_min, float in_max, float out_min, float out_max)
+	{
+		return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
+	}
+
+	void renderCube(mat4 P, mat4 V, mat4 transform, vec3 color, float w)
+	{
+		bindShapeProg(P, V);
+		
+		float scale = w ? 0.55 : 0.5;
+
+		mat4 myscale = glm::scale(glm::mat4(1.0f), glm::vec3(scale, scale, scale));
+		mat4 glowscale = myscale * glm::scale(glm::mat4(1.0f), glm::vec3(1.05f, 1.05f, 1.05f));
+		mat4 bglowscale = myscale * glm::scale(glm::mat4(1.0f), glm::vec3(1.3f, 1.3f, 1.3f));
+		mat4 myYrot = glm::rotate(glm::mat4(1.0f), PI_APPROX / 4.0f, glm::vec3(0, 1, 0));
+		mat4 myXrot = glm::rotate(glm::mat4(1.0f), PI_APPROX / 8.0f, glm::vec3(1, 0, 0));
+
+		mat4 M = transform * myXrot * myYrot * myscale;
+		glUniformMatrix4fv(shapeprog->getUniform("M"), 1, GL_FALSE, &M[0][0]);
+		glUniform3f(shapeprog->getUniform("color_ambient"), color.r, color.g, color.b);
+		glUniform3f(shapeprog->getUniform("color_diffuse"), color.r, color.g, color.b);
+		glUniform1f(shapeprog->getUniform("w_ambient"), 0.05);
+		glUniform1f(shapeprog->getUniform("w_diffuse"), fmap(w, 0, 1, 0.05, 1));
+		glUniform1f(shapeprog->getUniform("alpha"), 1);
+		shape.draw(shapeprog);
+
+		if (w > 0.9)
+		{
+			mat4 M = transform * myXrot * myYrot * glowscale;
+			glUniformMatrix4fv(shapeprog->getUniform("M"), 1, GL_FALSE, &M[0][0]);
+			glUniform3f(shapeprog->getUniform("color_ambient"), color.r, color.g, color.b);
+			glUniform3f(shapeprog->getUniform("color_diffuse"), color.r, color.g, color.b);
+			glUniform1f(shapeprog->getUniform("w_diffuse"), 0);
+			glUniform1f(shapeprog->getUniform("w_ambient"), 1);
+			glUniform1f(shapeprog->getUniform("alpha"), 0.1);
+			shape.draw(shapeprog);
+
+			M = transform * myXrot * myYrot * bglowscale;
+			glUniformMatrix4fv(shapeprog->getUniform("M"), 1, GL_FALSE, &M[0][0]);
+			glUniform3f(shapeprog->getUniform("color_ambient"), color.r, color.g, color.b);
+			glUniform3f(shapeprog->getUniform("color_diffuse"), color.r, color.g, color.b);
+			glUniform1f(shapeprog->getUniform("w_diffuse"), 0);
+			glUniform1f(shapeprog->getUniform("w_ambient"), 1);
+			glUniform1f(shapeprog->getUniform("alpha"), 0.02);
+			shape.draw(shapeprog);
+		}
+
+		unbindShapeProg();
+	}
+
 	void renderThings(mat4 P, mat4 V, float w)
 	{
-		mat4 rotM = rotate(mat4(1), w, vec3(1, 0, 1.2));
+		static float w1, w2, w3, w4 = 0.0;
+		k1 ? w1 = 1.0f : w1 *= 0.9f;
+		k2 ? w2 = 1.0f : w2 *= 0.9f;
+		k3 ? w3 = 1.0f : w3 *= 0.9f;
+		k4 ? w4 = 1.0f : w4 *= 0.9f;
+
+		std::vector<vec3> colors = std::vector<vec3>();
+		colors.push_back(vec3(1, 0, 0));
+		colors.push_back(vec3(1, 0.5, 0));
+		colors.push_back(vec3(1, 1, 0));
+		colors.push_back(vec3(0, 1, 0));
+		colors.push_back(vec3(0, 1, 1));
+		colors.push_back(vec3(0, 0, 1));
+		colors.push_back(vec3(1, 0, 1));
+
+		static int colorindex = 0;
+
+		if (releases < 0)
+		{
+			releases += 20;
+			colorindex+= 1;
+			if (colorindex >= colors.size())
+				colorindex = 0;
+		}
 		
-		renderCube(P, V, translate(mat4(1), vec3(-2,1,0)) * rotM);
-		renderCube(P, V, translate(mat4(1), vec3(-1, -1, 0)) * rotM);
-		renderCube(P, V, translate(mat4(1), vec3(0, 1, 0)) * rotM);
-		renderCube(P, V, translate(mat4(1), vec3(1, -1, 0)) * rotM);
-		renderCube(P, V, translate(mat4(1), vec3(2, 1, 0)) * rotM);
-		renderCube(P, V, translate(mat4(1), vec3(-5, 2,-15)) * rotM);
-		renderCube(P, V, translate(mat4(1), vec3(-2, -2, -15)) * rotM);
-		renderCube(P, V, translate(mat4(1), vec3(0, 2, -15)) * rotM);
-		renderCube(P, V, translate(mat4(1), vec3(5, -2, -15)) * rotM);
-		renderCube(P, V, translate(mat4(1), vec3(3, 2, -15)) * rotM);
+		renderCube(P, V, translate(mat4(1), vec3(0,2,-2)), colors.at(colorindex), w2);
+		renderCube(P, V, translate(mat4(1), vec3(0, 0, 0)), colors.at(colorindex), w3);
+		renderCube(P, V, translate(mat4(1), vec3(-2, 1, -1)), colors.at(colorindex), w1);
+		renderCube(P, V, translate(mat4(1), vec3(2, 1, -1)), colors.at(colorindex), w4);
 	}
 
 	void bindShapeProg(mat4 P, mat4 V)
@@ -380,7 +481,6 @@ public:
 		glUniform3fv(shapeprog->getUniform("campos"), 1, &mycam.pos[0]);
 
 		glUniform1f(shapeprog->getUniform("w_ambient"), 0.05);
-		glUniform1f(shapeprog->getUniform("w_diffuse"), 0.7);
 		glUniform3f(shapeprog->getUniform("lp"), -3, -1, -6);
 		glUniform1f(shapeprog->getUniform("pow_spec"), 100);
 		glUniform1f(shapeprog->getUniform("w_spec"), 1);
@@ -392,21 +492,7 @@ public:
 		shapeprog->unbind();
 	}
 
-	void renderCube(mat4 P, mat4 V, mat4 transform)
-	{
-		bindShapeProg(P, V);
-
-		mat4 myscale = glm::scale(glm::mat4(1.0f), glm::vec3(0.5, 0.5, 0.5));
-
-		mat4 M = transform * myscale;
-		glUniformMatrix4fv(shapeprog->getUniform("M"), 1, GL_FALSE, &M[0][0]);
-		glUniform3f(shapeprog->getUniform("color_ambient"), 1, 0, 0);
-		glUniform3f(shapeprog->getUniform("color_diffuse"), 1, 0, 0);
-
-		shape.draw(shapeprog);
-
-		unbindShapeProg();
-	}
+	
 
 };
 
