@@ -32,8 +32,9 @@ vec3 cd = normalize(fragPos - campos);
 
 vec3 h;
 float spec;
-float interpow = 2.0f;
-float ispecfactor = 0.15f;
+float interpow = 5.0f;
+float ispecfactor = 0.2f;
+float idifffactor = 0.01;
 
 if(my_index != 0)
 {
@@ -44,7 +45,7 @@ spec = clamp(spec,0,1);
 spec = pow(spec,interpow);
 diffuse = dot(n,ld);
 diffuse = clamp(diffuse,0,1);
-color.rgb += color_diffuse*diffuse*0.0*lit_amounts.r;
+color.rgb += color_diffuse*diffuse*idifffactor*lit_amounts.r;
 color.rgb += color_diffuse*spec*lit_amounts.r*ispecfactor;
 }
 
@@ -57,7 +58,7 @@ spec = clamp(spec,0,1);
 spec = pow(spec,interpow);
 diffuse = dot(n,ld);
 diffuse = clamp(diffuse,0,1);
-color.rgb += color_diffuse*diffuse*0.0*lit_amounts.g;
+color.rgb += color_diffuse*diffuse*idifffactor*lit_amounts.g;
 color.rgb += color_diffuse*spec*lit_amounts.g*ispecfactor;
 }
 
@@ -70,7 +71,7 @@ spec = clamp(spec,0,1);
 spec = pow(spec,interpow);
 diffuse = dot(n,ld);
 diffuse = clamp(diffuse,0,1);
-color.rgb += color_diffuse*diffuse*0.0*lit_amounts.b;
+color.rgb += color_diffuse*diffuse*idifffactor*lit_amounts.b;
 color.rgb += color_diffuse*spec*lit_amounts.b*ispecfactor;
 }
 
@@ -83,7 +84,7 @@ spec = clamp(spec,0,1);
 spec = pow(spec,interpow);
 diffuse = dot(n,ld);
 diffuse = clamp(diffuse,0,1);
-color.rgb += color_diffuse*diffuse*0.0*lit_amounts.a;
+color.rgb += color_diffuse*diffuse*idifffactor*lit_amounts.a;
 color.rgb += color_diffuse*spec*lit_amounts.a*ispecfactor;
 }
 

@@ -81,6 +81,8 @@ public:
 
 	int releases = 5;
 	WindowManager * windowManager = nullptr;
+	std::vector<float> randomBank;
+	FILE* f;
 
 	// Our shader program
 	std::shared_ptr<Program> prog, shapeprog;
@@ -140,21 +142,21 @@ public:
 			kn = 0;
 			releases--;
 		}
-		int i;
+		/*int i;
 		for (i = 0; i < KEY_COUNT; i++)
 		{
 			if (key == (GLFW_KEY_1 + i) && action == GLFW_PRESS)
 			{
 				inputkeys[i] = true;
-				printf("%ld, %d, %c\n", ((long)1000.0f * glfwGetTime()), i, 'p');
+				fprintf(f,"%ld, %d, %c\n", (long)(1000.0f * glfwGetTime()), i, 'p');
 			}
 			else if (key == (GLFW_KEY_1 + i) && action == GLFW_RELEASE)
 			{
 				inputkeys[i] = false;
 				releases--;
-				printf("%ld, %d, %c\n", ((long)1000.0f * glfwGetTime()), i, 'r');
+				fprintf(f,"%ld, %d, %c\n", (long)(1000.0f * glfwGetTime()), i, 'r');
 			}
-		}
+		}*/
 	}
 
 	// callback for the mouse when clicked move the triangle when helper functions
@@ -188,12 +190,20 @@ public:
 		shape.loadMesh(resourceDirectory + "/cube.obj");
 		shape.resize();
 		shape.init();
+
+		int i;
+		for (i = 0; i < 1000; i++)
+		{
+			randomBank.push_back((rand() % 100000) / 100000.0f);
+		}
 	}
 
 	//General OGL initialization - set OGL state here
 	void init(const std::string& resourceDirectory)
 	{
 		GLSL::checkVersion();
+
+		 f = fopen("summerair.csv" , "r");
 
 		// Set background color.
 		glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
@@ -276,6 +286,20 @@ public:
 		static float w = 0.0f;
 		w += frametime;
 
+		long inmillis = 0;
+		int innum = 0;
+		char inc = 'x';
+
+		if (glfwGetTime() * 1000 > inmillis)
+		{
+			fscanf(f, "%ld,%d,%c\n", &inmillis, &innum, &inc);
+			if(inc == 'p')
+				inputkeys[innum] = true;
+			else if (inc == 'r')
+				inputkeys[innum] = false;
+			printf("innum %ld\n", inmillis);
+		}
+
 		renderThings(P, V, w);
 	}
 
@@ -286,7 +310,7 @@ public:
 
 	void renderCube(mat4 transform, vec3 color, float w)
 	{
-		float scale = w ? 0.55 : 0.5;
+		float scale = w ? 0.51 : 0.5;
 
 		mat4 myscale = glm::scale(glm::mat4(1.0f), glm::vec3(scale, scale, scale));
 		mat4 glowscale = myscale * glm::scale(glm::mat4(1.0f), glm::vec3(1.05f, 1.05f, 1.05f));
@@ -318,21 +342,83 @@ public:
 		}
 	}
 
+	void renderFloor(mat4 transform, vec3 color)
+	{
+		mat4 myscale = glm::scale(glm::mat4(1.0f), glm::vec3(100, 0.1, 100));
+		mat4 myYrot = glm::rotate(glm::mat4(1.0f), PI_APPROX / 4.0f, glm::vec3(0, 1, 0));
+		mat4 myXrot = glm::rotate(glm::mat4(1.0f),(float) ((PI_APPROX / 8.0f) ), glm::vec3(1, 0, 0));
+
+		mat4 M = transform * myXrot * myYrot * myscale;
+		glUniformMatrix4fv(shapeprog->getUniform("M"), 1, GL_FALSE, &M[0][0]);
+		glUniform3f(shapeprog->getUniform("color_ambient"), (3 + color.x) * 0.25f, (3 + color.y) * 0.25f, (3 + color.z) * 0.25f);
+		glUniform3f(shapeprog->getUniform("color_diffuse"), color.x, color.y, color.z);
+		glUniform1f(shapeprog->getUniform("w_ambient"), 0.1f);
+		glUniform1f(shapeprog->getUniform("w_diffuse"), 0.05);
+		glUniform1f(shapeprog->getUniform("alpha"), 1);
+		shape.draw(shapeprog);
+	}
+
+	void renderWalls(vec3 color)
+	{
+		mat4 myscale = glm::scale(glm::mat4(1.0f), glm::vec3(100, 0.1, 100));
+		mat4 myYrot = glm::rotate(glm::mat4(1.0f), PI_APPROX / 4.0f, glm::vec3(0, 1, 0));
+		mat4 negmyYrot = glm::rotate(glm::mat4(1.0f), -PI_APPROX / 4.0f, glm::vec3(0, 1, 0));
+		mat4 myXrot = glm::rotate(glm::mat4(1.0f), (float)((PI_APPROX / 8.0f)), glm::vec3(1, 0, 0));
+		mat4 ltrans = translate(mat4(1), vec3(-50, 0, -40));
+		mat4 righttrans = translate(mat4(1), vec3(50, 0, -40));
+		mat4 prexrot = glm::rotate(glm::mat4(1.0f), (float)((PI_APPROX / 2.0f)), glm::vec3(1, 0, 0));
+
+		mat4 M;
+		glUniform3f(shapeprog->getUniform("color_ambient"), (3 + color.x) * 0.25f, (3 + color.y) * 0.25f, (3 + color.z) * 0.25f);
+		glUniform3f(shapeprog->getUniform("color_diffuse"), color.x, color.y, color.z);
+		glUniform1f(shapeprog->getUniform("w_ambient"), 0.1f);
+		glUniform1f(shapeprog->getUniform("w_diffuse"), 0.05);
+		glUniform1f(shapeprog->getUniform("alpha"), 1);
+
+		M = ltrans * myXrot * myYrot * prexrot * myscale;
+		glUniformMatrix4fv(shapeprog->getUniform("M"), 1, GL_FALSE, &M[0][0]);
+		shape.draw(shapeprog);
+
+		M = righttrans * myXrot * negmyYrot * prexrot * myscale;
+		glUniformMatrix4fv(shapeprog->getUniform("M"), 1, GL_FALSE, &M[0][0]);
+		shape.draw(shapeprog);
+	}
+
+
 	void renderThings(mat4 P, mat4 V, float w)
 	{
 		std::vector<vec3> cubeposes = std::vector<vec3>();
+		
 		cubeposes.push_back(vec3(-2, 1, -1));
 		cubeposes.push_back(vec3(0, 2, -2));
 		cubeposes.push_back(vec3(0, 0, 0));
 		cubeposes.push_back(vec3(2, 1, -1));
-
+		
 		std::vector<float> flatcubeposes = std::vector<float>();
 		int i;
-		for (i = 0; i < flatcubeposes.size(); i++)
+		for (i = 0; i < cubeposes.size(); i++)
 		{
 			flatcubeposes.push_back(cubeposes.at(i).x);
 			flatcubeposes.push_back(cubeposes.at(i).y);
 			flatcubeposes.push_back(cubeposes.at(i).z);
+		}
+
+		float t = glfwGetTime();
+		for (int i = 0; i < flatcubeposes.size(); i++)
+		{
+			flatcubeposes.data()[i] += 
+				sin(t * (fmap(randomBank.at((i * 3) + 0), 0, 1, 0.5, 1.5)) + 
+					fmap(randomBank.at((i * 3) + 1), 0, 1, 0, 1))
+				* fmap(randomBank.at((i * 3) + 2), 0, 1, 0.01, 0.15);
+		}
+
+		cubeposes.clear();
+		for (int i = 0; i < flatcubeposes.size() / 3; i++)
+		{
+			cubeposes.push_back(vec3(
+				flatcubeposes.at((i* 3) + 0), 
+				flatcubeposes.at((i * 3) + 1),
+				flatcubeposes.at((i * 3) + 2)));
 		}
 
 		bindShapeProg(P, V, cubeposes);
@@ -340,12 +426,14 @@ public:
 		static float inten[4];
 
 		std::vector<vec3> colors = std::vector<vec3>();
+		colors.push_back(vec3(1, 1, 1));
 		colors.push_back(vec3(1, 0, 0));
 		colors.push_back(vec3(1, 0.5, 0));
 		colors.push_back(vec3(1, 1, 0));
 		colors.push_back(vec3(0, 1, 0));
 		colors.push_back(vec3(0, 1, 1));
-		colors.push_back(vec3(0, 0, 1));
+		colors.push_back(vec3(0, 0.3, 1));
+		colors.push_back(vec3(0.6, 0, 1));
 		colors.push_back(vec3(1, 0, 1));
 		
 		static int colorindex = 0;
@@ -365,6 +453,9 @@ public:
 
 		glUniform4fv(shapeprog->getUniform("lit_amounts"), 1, &inten[0]);
 
+		glUniform1i(shapeprog->getUniform("my_index"), -1);
+		renderWalls(colors.at(colorindex));
+		renderFloor(translate(mat4(1), vec3(0, -25, -10)), colors.at(colorindex));
 		for (i = 0; i < cubeposes.size() && i < KEY_COUNT; i++)
 		{
 			glUniform1i(shapeprog->getUniform("my_index"), i);
