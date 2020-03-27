@@ -69,16 +69,16 @@ public:
 };
 
 camera mycam;
+#define KEY_COUNT 4
+
 
 class Application : public EventCallbacks
 {
 
 public:
 	int kn = 0;
-	bool k1 = false;
-	bool k2 = false;
-	bool k3 = false;
-	bool k4 = false;
+	bool inputkeys[KEY_COUNT] = {false};
+
 	int releases = 5;
 	WindowManager * windowManager = nullptr;
 
@@ -140,29 +140,20 @@ public:
 			kn = 0;
 			releases--;
 		}
-		if (key == GLFW_KEY_1 && action == GLFW_PRESS) k1 = 1;
-		if (key == GLFW_KEY_1 && action == GLFW_RELEASE)
+		int i;
+		for (i = 0; i < KEY_COUNT; i++)
 		{
-			k1 = 0;
-			releases--;
-		}
-		if (key == GLFW_KEY_2 && action == GLFW_PRESS) k2 = 1;
-		if (key == GLFW_KEY_2 && action == GLFW_RELEASE) 
-		{
-			k2 = 0;
-			releases--;
-		}
-		if (key == GLFW_KEY_3 && action == GLFW_PRESS) k3 = 1;
-		if (key == GLFW_KEY_3 && action == GLFW_RELEASE)
-		{
-			k3 = 0;
-			releases--;
-		}
-		if (key == GLFW_KEY_4 && action == GLFW_PRESS) k4 = 1;
-		if (key == GLFW_KEY_4 && action == GLFW_RELEASE)
-		{
-			k4 = 0;
-			releases--;
+			if (key == (GLFW_KEY_1 + i) && action == GLFW_PRESS)
+			{
+				inputkeys[i] = true;
+				printf("%ld, %d, %c\n", ((long)1000.0f * glfwGetTime()), i, 'p');
+			}
+			else if (key == (GLFW_KEY_1 + i) && action == GLFW_RELEASE)
+			{
+				inputkeys[i] = false;
+				releases--;
+				printf("%ld, %d, %c\n", ((long)1000.0f * glfwGetTime()), i, 'r');
+			}
 		}
 	}
 
@@ -197,110 +188,6 @@ public:
 		shape.loadMesh(resourceDirectory + "/cube.obj");
 		shape.resize();
 		shape.init();
-
-
-		//generate the VAO
-		glGenVertexArrays(1, &VertexArrayID);
-		glBindVertexArray(VertexArrayID);
-
-		//generate vertex buffer to hand off to OGL
-		glGenBuffers(1, &VertexBufferID);
-		//set the current state to focus on our vertex buffer
-		glBindBuffer(GL_ARRAY_BUFFER, VertexBufferID);
-
-		GLfloat cube_vertices[] = {
-			// front
-			-1.0, -1.0,  1.0,
-			1.0, -1.0,  1.0,
-			1.0,  1.0,  1.0,
-			-1.0,  1.0,  1.0,
-			// back
-			-1.0, -1.0, -1.0,
-			1.0, -1.0, -1.0,
-			1.0,  1.0, -1.0,
-			-1.0,  1.0, -1.0,
-			//tube 8 - 11
-			-1.0, -1.0,  1.0,
-			1.0, -1.0,  1.0,
-			1.0,  1.0,  1.0,
-			-1.0,  1.0,  1.0,
-			//12 - 15
-			-1.0, -1.0, -1.0,
-			1.0, -1.0, -1.0,
-			1.0,  1.0, -1.0,
-			-1.0,  1.0, -1.0
-
-			
-		};
-		//actually memcopy the data - only do this once
-		glBufferData(GL_ARRAY_BUFFER, sizeof(cube_vertices), cube_vertices, GL_DYNAMIC_DRAW);
-
-		//we need to set up the vertex array
-		glEnableVertexAttribArray(0);
-		//key function to get up how many elements to pull out at a time (3)
-		glVertexAttribPointer(0, 3, GL_FLOAT, GL_FALSE, 0, (void*) 0);
-
-		//color
-		GLfloat cube_normals[] = {
-			0, 0.0, 1,
-			0, 0.0, 1,
-			0, 0.0, 1,
-			0, 0.0, 1,
-			0, 0.0, 1.0,
-			0, 0.0, 1.0,
-			0, 0.0, 1.0,
-			0, 0.0, 1.0,
-			0.0, 0, 1.0,
-			0.0, 0.0, 1.0,
-			0.0, 0.0, 1.0,
-			0.0, 0.0, 1.0,
-			0.0, 0.0, 1.0,
-			0.0, 0.0, 1.0,
-			0.0, 0.0, 1.0,
-			0.0, 0.0, 1.0,
-		};
-		glGenBuffers(1, &VertexColorIDBox);
-		//set the current state to focus on our vertex buffer
-		glBindBuffer(GL_ARRAY_BUFFER, VertexColorIDBox);
-		glBufferData(GL_ARRAY_BUFFER, sizeof(cube_normals), cube_normals, GL_STATIC_DRAW);
-		glEnableVertexAttribArray(1);
-		glVertexAttribPointer(1, 3, GL_FLOAT, GL_FALSE, 0, (void*)0);
-
-		glGenBuffers(1, &IndexBufferIDBox);
-		//set the current state to focus on our vertex buffer
-		glBindBuffer(GL_ELEMENT_ARRAY_BUFFER, IndexBufferIDBox);
-		GLushort cube_elements[] = {
-		
-			// front
-			0, 1, 2,
-			2, 3, 0,
-			// back
-			7, 6, 5,
-			5, 4, 7,
-			//tube 8-11, 12-15
-			8,12,13,
-			8,13,9,
-			9,13,14,
-			9,14,10,
-			10,14,15,
-			10,15,11,
-			11,15,12,
-			11,12,8
-			
-		};
-		glBufferData(GL_ELEMENT_ARRAY_BUFFER, sizeof(cube_elements), cube_elements, GL_STATIC_DRAW);
-
-
-
-		glBindVertexArray(0);
-
-
-		// generate the VAO
-		glGenVertexArrays(1, &CylinderArrayID);
-		glBindVertexArray(CylinderArrayID);
-
-		// generate vertex buffer to hand off to OGL
-		glGenBuffers(1, &CylinderVertexBufferId);
 	}
 
 	//General OGL initialization - set OGL state here
@@ -352,6 +239,12 @@ public:
 		shapeprog->addUniform("color_ambient");
 		shapeprog->addUniform("w_ambient");
 		shapeprog->addUniform("alpha");
+		shapeprog->addUniform("cubepos0");
+		shapeprog->addUniform("cubepos1");
+		shapeprog->addUniform("cubepos2");
+		shapeprog->addUniform("cubepos3");
+		shapeprog->addUniform("lit_amounts");
+		shapeprog->addUniform("my_index");
 		shapeprog->addAttribute("vertPos");
 		shapeprog->addAttribute("vertNor");
 		shapeprog->addAttribute("vertTex");
@@ -391,10 +284,8 @@ public:
 		return (x - in_min) * (out_max - out_min) / (in_max - in_min) + out_min;
 	}
 
-	void renderCube(mat4 P, mat4 V, mat4 transform, vec3 color, float w)
+	void renderCube(mat4 transform, vec3 color, float w)
 	{
-		bindShapeProg(P, V);
-		
 		float scale = w ? 0.55 : 0.5;
 
 		mat4 myscale = glm::scale(glm::mat4(1.0f), glm::vec3(scale, scale, scale));
@@ -423,26 +314,30 @@ public:
 			glUniform1f(shapeprog->getUniform("alpha"), 0.1);
 			shape.draw(shapeprog);
 
-			M = transform * myXrot * myYrot * bglowscale;
-			glUniformMatrix4fv(shapeprog->getUniform("M"), 1, GL_FALSE, &M[0][0]);
-			glUniform3f(shapeprog->getUniform("color_ambient"), color.r, color.g, color.b);
-			glUniform3f(shapeprog->getUniform("color_diffuse"), color.r, color.g, color.b);
-			glUniform1f(shapeprog->getUniform("w_diffuse"), 0);
-			glUniform1f(shapeprog->getUniform("w_ambient"), 1);
-			glUniform1f(shapeprog->getUniform("alpha"), 0.02);
-			shape.draw(shapeprog);
+			
 		}
-
-		unbindShapeProg();
 	}
 
 	void renderThings(mat4 P, mat4 V, float w)
 	{
-		static float w1, w2, w3, w4 = 0.0;
-		k1 ? w1 = 1.0f : w1 *= 0.9f;
-		k2 ? w2 = 1.0f : w2 *= 0.9f;
-		k3 ? w3 = 1.0f : w3 *= 0.9f;
-		k4 ? w4 = 1.0f : w4 *= 0.9f;
+		std::vector<vec3> cubeposes = std::vector<vec3>();
+		cubeposes.push_back(vec3(-2, 1, -1));
+		cubeposes.push_back(vec3(0, 2, -2));
+		cubeposes.push_back(vec3(0, 0, 0));
+		cubeposes.push_back(vec3(2, 1, -1));
+
+		std::vector<float> flatcubeposes = std::vector<float>();
+		int i;
+		for (i = 0; i < flatcubeposes.size(); i++)
+		{
+			flatcubeposes.push_back(cubeposes.at(i).x);
+			flatcubeposes.push_back(cubeposes.at(i).y);
+			flatcubeposes.push_back(cubeposes.at(i).z);
+		}
+
+		bindShapeProg(P, V, cubeposes);
+
+		static float inten[4];
 
 		std::vector<vec3> colors = std::vector<vec3>();
 		colors.push_back(vec3(1, 0, 0));
@@ -452,7 +347,7 @@ public:
 		colors.push_back(vec3(0, 1, 1));
 		colors.push_back(vec3(0, 0, 1));
 		colors.push_back(vec3(1, 0, 1));
-
+		
 		static int colorindex = 0;
 
 		if (releases < 0)
@@ -462,14 +357,24 @@ public:
 			if (colorindex >= colors.size())
 				colorindex = 0;
 		}
-		
-		renderCube(P, V, translate(mat4(1), vec3(0,2,-2)), colors.at(colorindex), w2);
-		renderCube(P, V, translate(mat4(1), vec3(0, 0, 0)), colors.at(colorindex), w3);
-		renderCube(P, V, translate(mat4(1), vec3(-2, 1, -1)), colors.at(colorindex), w1);
-		renderCube(P, V, translate(mat4(1), vec3(2, 1, -1)), colors.at(colorindex), w4);
+
+		for (i = 0; i < cubeposes.size() && i < KEY_COUNT; i++)
+		{
+			inputkeys[i] ? inten[i] = 1 : inten[i] *= 0.9;
+		}
+
+		glUniform4fv(shapeprog->getUniform("lit_amounts"), 1, &inten[0]);
+
+		for (i = 0; i < cubeposes.size() && i < KEY_COUNT; i++)
+		{
+			glUniform1i(shapeprog->getUniform("my_index"), i);
+			renderCube(translate(mat4(1), cubeposes.at(i)), colors.at(colorindex), inten[i]);
+		}
+
+		unbindShapeProg();
 	}
 
-	void bindShapeProg(mat4 P, mat4 V)
+	void bindShapeProg(mat4 P, mat4 V, std::vector<vec3> &cubeposes)
 	{
 		shapeprog->bind();
 		mat4 Shead = glm::scale(glm::mat4(1.0f), glm::vec3(1, 1, 1));
@@ -479,10 +384,13 @@ public:
 		glUniformMatrix4fv(shapeprog->getUniform("V"), 1, GL_FALSE, &V[0][0]);
 
 		glUniform3fv(shapeprog->getUniform("campos"), 1, &mycam.pos[0]);
-
+		glUniform3f(shapeprog->getUniform("cubepos0"), cubeposes.at(0).x, cubeposes.at(0).y, cubeposes.at(0).z);
+		glUniform3f(shapeprog->getUniform("cubepos1"), cubeposes.at(1).x, cubeposes.at(1).y, cubeposes.at(1).z);
+		glUniform3f(shapeprog->getUniform("cubepos2"), cubeposes.at(2).x, cubeposes.at(2).y, cubeposes.at(2).z);
+		glUniform3f(shapeprog->getUniform("cubepos3"), cubeposes.at(3).x, cubeposes.at(3).y, cubeposes.at(3).z );
 		glUniform1f(shapeprog->getUniform("w_ambient"), 0.05);
 		glUniform3f(shapeprog->getUniform("lp"), -3, -1, -6);
-		glUniform1f(shapeprog->getUniform("pow_spec"), 100);
+		glUniform1f(shapeprog->getUniform("pow_spec"), 20);
 		glUniform1f(shapeprog->getUniform("w_spec"), 1);
 
 	}
