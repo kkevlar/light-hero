@@ -10,15 +10,17 @@ protected:
 	int releases = 20;
 public:
 	TimingReader();
-	virtual bool getInput(long millis, int num) = 0;
-	virtual void handleKeyCallback(long millis, int key, int action) = 0;
+	virtual bool getInput(long millis_elapsed, int num) = 0;
+	virtual void handleKeyCallback(long millis_elapsed, int key, int action) = 0;
+	int getReleases();
+	void setReleases(int r);
 };
 
 class SimpleTimingReader : public TimingReader
 {
 public:
-	void handleKeyCallback(long millis, int key, int action);
-	bool getInput(long millis, int num);
+	void handleKeyCallback(long millis_elapsed, int key, int action);
+	bool getInput(long millis_elapsed, int num);
 };
 
 class TimingWritingReader : public TimingReader
@@ -27,6 +29,6 @@ private:
 	FILE* outfile;
 public:
 	TimingWritingReader();
-	void handleKeyCallback(long millis, int key, int action);
-	bool getInput(long millis, int num);
+	void handleKeyCallback(long millis_elapsed, int key, int action);
+	bool getInput(long millis_elapsed, int num);
 };

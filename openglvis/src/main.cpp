@@ -11,6 +11,7 @@ ZJ Wood CPE 471 Lab 3 base code
 
 #include "WindowManager.h"
 #include "Shape.h"
+#include "Timing.h"
 
 #include <glm/gtc/type_ptr.hpp>
 #include <glm/gtc/matrix_transform.hpp>
@@ -77,12 +78,8 @@ class Application : public EventCallbacks
 
 public:
 	int kn = 0;
-	bool inputkeys[KEY_COUNT] = {false};
-
-	int releases = 5;
 	WindowManager * windowManager = nullptr;
 	std::vector<float> randomBank;
-	FILE* f;
 
 	// Our shader program
 	std::shared_ptr<Program> prog, shapeprog;
@@ -93,8 +90,7 @@ public:
 	// Data necessary to give our box to OpenGL
 	GLuint VertexBufferID, VertexColorIDBox, IndexBufferIDBox, CylinderArrayID, CylinderVertexBufferId;
 
-
-
+	SimpleTimingReader timing;
 	Shape shape;
 
 	void keyCallback(GLFWwindow *window, int key, int scancode, int action, int mods)
@@ -140,7 +136,6 @@ public:
 		if (key == GLFW_KEY_N && action == GLFW_RELEASE)
 		{
 			kn = 0;
-			releases--;
 		}
 		
 	}
@@ -189,7 +184,6 @@ public:
 	{
 		GLSL::checkVersion();
 
-		 f = fopen("dsafs.csv" , "w");
 
 		// Set background color.
 		glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
@@ -370,6 +364,11 @@ public:
 		shape.draw(shapeprog);
 	}
 
+	long inomillis()
+	{
+		return ((long) (glfwGetTime() * 2 * 1000)) + 4500;
+	}
+
 
 	void renderThings(mat4 P, mat4 V, float w)
 	{
@@ -424,9 +423,9 @@ public:
 		
 		static int colorindex = 0;
 
-		if (releases < 0)
+		if (timing.getReleases() < 0)
 		{
-			releases += 20;
+			timing.setReleases(timing.getReleases() + 20);
 			colorindex+= 1;
 			if (colorindex >= colors.size())
 				colorindex = 0;
@@ -434,7 +433,7 @@ public:
 
 		for (i = 0; i < cubeposes.size() && i < KEY_COUNT; i++)
 		{
-			inputkeys[i] ? inten[i] = 1 : inten[i] *= 0.9;
+			timing.getInput(inomillis(), i) ? inten[i] = 1 : inten[i] *= 0.9;
 		}
 
 		glUniform4fv(shapeprog->getUniform("lit_amounts"), 1, &inten[0]);
