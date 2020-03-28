@@ -69,7 +69,7 @@ public:
 };
 
 camera mycam;
-#define KEY_COUNT 4
+
 
 
 class Application : public EventCallbacks
@@ -142,21 +142,7 @@ public:
 			kn = 0;
 			releases--;
 		}
-		/*int i;
-		for (i = 0; i < KEY_COUNT; i++)
-		{
-			if (key == (GLFW_KEY_1 + i) && action == GLFW_PRESS)
-			{
-				inputkeys[i] = true;
-				fprintf(f,"%ld, %d, %c\n", (long)(1000.0f * glfwGetTime()), i, 'p');
-			}
-			else if (key == (GLFW_KEY_1 + i) && action == GLFW_RELEASE)
-			{
-				inputkeys[i] = false;
-				releases--;
-				fprintf(f,"%ld, %d, %c\n", (long)(1000.0f * glfwGetTime()), i, 'r');
-			}
-		}*/
+		
 	}
 
 	// callback for the mouse when clicked move the triangle when helper functions
@@ -203,7 +189,7 @@ public:
 	{
 		GLSL::checkVersion();
 
-		 f = fopen("summerair.csv" , "r");
+		 f = fopen("dsafs.csv" , "w");
 
 		// Set background color.
 		glClearColor(0.1f, 0.1f, 0.1f, 1.0f);
@@ -290,7 +276,7 @@ public:
 		int innum = 0;
 		char inc = 'x';
 
-		if (glfwGetTime() * 1000 > inmillis)
+		/*if (glfwGetTime() * 1000 > inmillis)
 		{
 			fscanf(f, "%ld,%d,%c\n", &inmillis, &innum, &inc);
 			if(inc == 'p')
@@ -298,7 +284,7 @@ public:
 			else if (inc == 'r')
 				inputkeys[innum] = false;
 			printf("innum %ld\n", inmillis);
-		}
+		}*/
 
 		renderThings(P, V, w);
 	}

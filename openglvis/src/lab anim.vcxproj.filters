@@ -10,6 +10,7 @@
     <ClCompile Include="..\ext\glad\src\glad.c">
       <Filter>ext</Filter>
     </ClCompile>
+    <ClCompile Include="Timing.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Program.h" />
@@ -18,6 +19,7 @@
     <ClInclude Include="MatrixStack.h" />
     <ClInclude Include="Shape.h" />
     <ClInclude Include="tiny_obj_loader.h" />
+    <ClInclude Include="Timing.h" />
   </ItemGroup>
   <ItemGroup>
     <Filter Include="ext">
