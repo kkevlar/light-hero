@@ -1,6 +1,6 @@
 #pragma once
-#include <vector>
 #define KEY_COUNT 4
+
 
 class TimingReader
 {
@@ -18,10 +18,17 @@ public:
 
 class SimpleTimingReader : public TimingReader
 {
+private:
+	int progress_index;
 public:
+	SimpleTimingReader();
 	void handleKeyCallback(long millis_elapsed, int key, int action);
 	bool getInput(long millis_elapsed, int num);
+	int getFirstEventTime();
+	void resetProgress();
 };
+
+#include <iostream>
 
 class TimingWritingReader : public TimingReader
 {

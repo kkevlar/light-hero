@@ -80,6 +80,7 @@ public:
 	int kn = 0;
 	WindowManager * windowManager = nullptr;
 	std::vector<float> randomBank;
+	long millis_offset = 0;
 
 	// Our shader program
 	std::shared_ptr<Program> prog, shapeprog;
@@ -136,6 +137,11 @@ public:
 		if (key == GLFW_KEY_N && action == GLFW_RELEASE)
 		{
 			kn = 0;
+		}
+		if (key == GLFW_KEY_SPACE && action == GLFW_PRESS)
+		{
+			millis_offset = -inomillis(0) + timing.getFirstEventTime();
+			timing.resetProgress();
 		}
 		
 	}
@@ -364,9 +370,9 @@ public:
 		shape.draw(shapeprog);
 	}
 
-	long inomillis()
+	long inomillis(long offset)
 	{
-		return ((long) (glfwGetTime() * 2 * 1000)) + 4500;
+		return ((long) (glfwGetTime() * 2 * 1000)) + offset;
 	}
 
 
@@ -433,7 +439,7 @@ public:
 
 		for (i = 0; i < cubeposes.size() && i < KEY_COUNT; i++)
 		{
-			timing.getInput(inomillis(), i) ? inten[i] = 1 : inten[i] *= 0.9;
+			timing.getInput(inomillis(millis_offset), i) ? inten[i] = 1 : inten[i] *= 0.9;
 		}
 
 		glUniform4fv(shapeprog->getUniform("lit_amounts"), 1, &inten[0]);

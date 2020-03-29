@@ -288,25 +288,40 @@ char actions[] = {
     'r', 'r', 'p', 'p', 'r', 'r', 'p', 'p', 'r', 'p', 'r', 'p', 'r', 'p', 'p',
     'r', 'r', 'p', 'p', 'r', 'r', 'r'};
 
+SimpleTimingReader::SimpleTimingReader() : TimingReader::TimingReader()
+{
+    progress_index = 0;
+}
+
 bool SimpleTimingReader::getInput(long millis_elapsed, int num) 
 {
-    static int index = 0;
-    if (millis_elapsed >= times[index])
+    if (millis_elapsed >= times[progress_index])
     {
-        if (actions[index] == 'p')
+        if (actions[progress_index] == 'p')
         {
-            inputkeys[keynums[index]] = true;
+            inputkeys[keynums[progress_index]] = true;
         }
-        else if (actions[index] == 'r')
+        else if (actions[progress_index] == 'r')
         {
-            inputkeys[keynums[index]] = false;
+            inputkeys[keynums[progress_index]] = false;
             releases--;
         }
-        index++;
+        progress_index++;
     }
 
     return inputkeys[num];
 }
+
+int SimpleTimingReader::getFirstEventTime()
+{
+    return times[0];
+}
+
+void SimpleTimingReader::resetProgress()
+{
+    progress_index = 0;
+}
+
 
 #include "GLSL.h"
 #include "WindowManager.h"
